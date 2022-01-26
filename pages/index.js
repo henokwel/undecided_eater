@@ -6,12 +6,12 @@ import styles from '../styles/Home.module.css'
 import { Skeleton } from "baseui/skeleton";
 import { ThemeProvider, LightTheme, DarkTheme } from 'baseui';
 import { Button, SIZE } from 'baseui/button';
+import LocationIcon from '../src/assets/icons/location--filled.svg'
+import ArrowIcon from '../src/assets/icons/ArrowIcon.svg'
 
-import {
-
-  H1,
-
-} from 'baseui/typography';
+import CustomTicks from '../src/components/utils/CustonSlider';
+import PriceToggler from '../src/components/utils/PriceToggler';
+import { useStyletron } from 'baseui';
 
 const THEME = {
   light: 'light',
@@ -20,6 +20,9 @@ const THEME = {
 
 export default function Home() {
   const [theme, setTheme] = React.useState(THEME.dark);
+  const [css, themes] = useStyletron();
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -29,28 +32,111 @@ export default function Home() {
       </Head>
 
       <ThemeProvider theme={theme === THEME.light ? LightTheme : DarkTheme}>
-        <main>
-          <section>
+        <main
+          className={css({
+            display: 'flex',
+            flexDirection: "column",
+            justifyContent: 'space-between',
+            height: "100vh",
+            // alignItems: 'center',
+            // paddingRight: theme.sizing.scale600,
+            // paddingLeft: theme.sizing.scale600,
+            // paddingBottom: theme.sizing.scale400,
+            color: themes.colors.primaryB
+          })}
+        >
+          <div>
 
-            <H1 $style={{
-              fontSize: '76px',
-              fontWeight: '600',
-              lineHeight: '88px'
+            <section>
+              <h1 style={{
+                fontSize: '32px',
+                fontWeight: '600',
+                marginBottom: '15px',
+                lineHeight: '42px',
+                // color: "white"
+              }}>
+                Your   <br />
+                Current   <br />
+                Location   <br />
+              </h1>
+
+              <div style={{ display: "flex" }}>
+                <Button
+                  $style={{
+                    color: "#0054A9",
+                    fontWeight: "600",
+                    marginRight: "12px"
+
+                  }}
+                  size={SIZE.large}>
+                  Get Location
+                </Button>
+                <Image src={LocationIcon} />
+              </div>
+            </section>
+
+
+            <section>
+              <h1 style={{
+                fontSize: '32px',
+                fontWeight: '600',
+                marginBottom: '15px',
+                lineHeight: '42px',
+                // color: "white"
+              }}>
+                Search   <br />
+                Area   <br />
+              </h1>
+
+              <div style={{ display: "flex" }}>
+                <CustomTicks />
+              </div>
+            </section>
+
+
+
+            <section>
+              <h1 style={{
+                fontSize: '32px',
+                fontWeight: '600',
+                marginBottom: '15px',
+                lineHeight: '42px',
+                // color: "white"
+              }}>
+                Price
+              </h1>
+
+              <div style={{ display: "flex" }}>
+                <PriceToggler />
+              </div>
+            </section>
+
+          </div>
+
+
+
+          <div
+            style={{
+              display: "flex",
+              background: "red",
+              justifyContent: "flex-end"
             }}>
-              Your   <br />
-              Current   <br />
-              Location   <br />
-            </H1>
-
             <Button
+              $style={{
+
+                color: "#0054A9",
+                fontWeight: "600",
+                // marginRight: "12px"
+
+              }}
               size={SIZE.large}>
               Get Location
+
+              <Image src={ArrowIcon} />
+
+
             </Button>
-
-          </section>
-
-
-
+          </div>
         </main>
       </ThemeProvider>
 
