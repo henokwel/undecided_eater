@@ -38,6 +38,7 @@ export default function Home() {
             flexDirection: "column",
             justifyContent: 'space-between',
             height: "100vh",
+
             // alignItems: 'center',
             // paddingRight: theme.sizing.scale600,
             // paddingLeft: theme.sizing.scale600,
@@ -47,7 +48,7 @@ export default function Home() {
         >
           <div>
 
-            <section>
+            <section className={styles.locationSection}>
               <h1 style={{
                 fontSize: '32px',
                 fontWeight: '600',
@@ -95,7 +96,7 @@ export default function Home() {
 
 
 
-            <section>
+            <section className={styles.priceSection}>
               <h1 style={{
                 fontSize: '32px',
                 fontWeight: '600',
@@ -118,20 +119,23 @@ export default function Home() {
           <div
             style={{
               display: "flex",
-              background: "red",
-              justifyContent: "flex-end"
+              justifyContent: "flex-end",
+              marginTop: "20px"
             }}>
             <Button
               $style={{
 
                 color: "#0054A9",
                 fontWeight: "600",
+                width:"154px"
                 // marginRight: "12px"
 
               }}
               size={SIZE.large}>
-              Get Location
-
+              Search
+              {'\u00A0'}
+              {'\u00A0'}
+              {'\u00A0'}
               <Image src={ArrowIcon} />
 
 

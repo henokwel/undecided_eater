@@ -48,10 +48,7 @@ export default function PriceToggler() {
                 onClick={(event, index) => {
                     setSelected(index);
                 }}
-
-            // className={css({
-            //     background: theme.colors.accent
-            // })}
+                id="buttonGroup"
             >
                 <Button>
                     <Image src={Pig1} />
