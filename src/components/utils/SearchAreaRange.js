@@ -5,7 +5,7 @@ import { useStyletron } from 'baseui';
 const mToKm = (value) => `${(value / 1000).toFixed(1)}km`;
 
 function SearchAreaRange({ handleSelect }) {
-    const [value, setValue] = React.useState([500]);
+    const [value, setValue] = React.useState([1000]);
     const [css, theme] = useStyletron();
 
     const handleChange = (value) => {
@@ -18,7 +18,7 @@ function SearchAreaRange({ handleSelect }) {
     return (
         <Slider
             value={value}
-            min={500}
+            min={1000}
             max={3000}
             step={100}
             onChange={params => {
@@ -45,7 +45,7 @@ function SearchAreaRange({ handleSelect }) {
                             backgroundColor: 'transparent',
                         })}
                     >
-                        {$value}
+                        {$value}{"m"}
                     </div>
                 ),
                 TickBar: ({ $min, $max }) => (
@@ -62,9 +62,12 @@ function SearchAreaRange({ handleSelect }) {
                     >
                         <div>{mToKm($min)}</div>
                         {/* <div>{mToKm(500)}</div> */}
-                        <div>{mToKm(1300)}</div>
+                        {/* <div></div> */}
+                        {/* <div>{mToKm(1000)}</div> */}
                         {/* <div>{mToKm(1500)}</div> */}
-                        <div>{mToKm(2100)}</div>
+                        {/* <div></div> */}
+                        <div>{mToKm(2000)}</div>
+                        {/* <div></div> */}
                         <div>{mToKm($max)}</div>
                     </div>
                 ),

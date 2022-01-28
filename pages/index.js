@@ -11,12 +11,12 @@ import ArrowIcon from '../src/assets/icons/ArrowIcon.svg'
 import ThumbUp from '../src/assets/icons/thumbs-up--filled 1.svg'
 
 
-import CustomTicks from '../src/components/utils/CustonSlider';
+import CustomTicks from '../src/components/utils/SearchAreaRange';
 import PriceToggler from '../src/components/utils/PriceToggler';
 import { useStyletron } from 'baseui';
 import { Layer } from 'baseui/layer';
 import { Wrapper } from '../src/components/utils/PromptWrapper';
-import SearchAreaRange from '../src/components/utils/CustonSlider';
+import SearchAreaRange from '../src/components/utils/SearchAreaRange';
 import { useRouter } from 'next/router';
 import { route } from 'next/dist/server/router';
 import Link from 'next/link';
@@ -96,9 +96,7 @@ export default function Home() {
       area: searchArea[0],
       price: priceRange
     }
-    // Send data as props
-    // Route to Result Page
-
+    
     console.log('CoreSatet', coreState);
 
     router.push({
@@ -246,26 +244,36 @@ export default function Home() {
               justifyContent: "flex-end",
               marginTop: "20px"
             }}>
-            <Button
-              onClick={handleSearchSubmit}
-              $style={{
-                color: "#0054A9",
-                fontWeight: "600",
-                width: "254px"
-                // marginRight: "12px"
 
-              }}
-              size={SIZE.large}>
-              {/* <Link href="/result"> */}
-              Search
-              {/* </Link> */}
-              {'\u00A0'}
-              {'\u00A0'}
-              {'\u00A0'}
-              <Image src={ArrowIcon} alt="Arrow Icon Pin" />
+            {
+              locationStatus.lat === null ?
+                <></>
+                :
+
+                <Button
+                  onClick={handleSearchSubmit}
+                  $style={{
+                    color: "#0054A9",
+                    fontWeight: "600",
+                    width: "254px"
+                    // marginRight: "12px"
+
+                  }}
+                  size={SIZE.large}>
+                  {/* <Link href="/result"> */}
+                  Search
+                  {/* </Link> */}
+                  {'\u00A0'}
+                  {'\u00A0'}
+                  {'\u00A0'}
+                  <Image src={ArrowIcon} alt="Arrow Icon Pin" />
 
 
-            </Button>
+                </Button>
+
+
+            }
+
           </div>
         </main>
       </ThemeProvider>
