@@ -5,10 +5,10 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { Skeleton } from "baseui/skeleton";
 import { ThemeProvider, LightTheme, DarkTheme } from 'baseui';
-import { Button, SIZE } from 'baseui/button';
+import { Button, SIZE, SHAPE } from 'baseui/button';
 import LocationIcon from '../src/assets/icons/location--filled.svg'
 import ArrowIcon from '../src/assets/icons/ArrowIcon.svg'
-import ThumbUp from '../src/assets/icons/thumbs-up--filled 1.svg'
+import RefreshIcon from '../src/assets/icons/reload-icon.svg'
 
 
 import CustomTicks from '../src/components/utils/SearchAreaRange';
@@ -20,6 +20,11 @@ import SearchAreaRange from '../src/components/utils/SearchAreaRange';
 import { useRouter } from 'next/router';
 
 import {
+    AspectRatioBox,
+    AspectRatioBoxBody,
+} from 'baseui/aspect-ratio-box';
+
+import {
     Label1,
     Label2,
     Label3,
@@ -28,7 +33,9 @@ import {
     Paragraph2,
     Paragraph3,
     Paragraph4,
-    H5
+    H5,
+    Display2,
+    Display4
 } from 'baseui/typography';
 import { Quote } from '../src/components/Result/Quote';
 import { Card } from '../src/components/Result/Card';
@@ -119,9 +126,8 @@ export default function Home() {
             pathname: "/result",
             query: coreState
         })
-
-
     }
+
 
 
     return (
@@ -164,7 +170,8 @@ export default function Home() {
                         display: 'flex',
                         flexDirection: "column",
                         justifyContent: 'space-between',
-                        height: "100vh",
+                        alignItems: "center",
+                        // height: "100vh",
 
                         // alignItems: 'center',
                         // paddingRight: theme.sizing.scale600,
@@ -176,8 +183,95 @@ export default function Home() {
 
                     <Card themes={themes} />
 
+                    <div
+                        className={css({
+                            display: 'flex',
+                            // flexDirection: "column",
+                            justifyContent: 'center',
 
-                    
+                            maxWidth: '528px',
+                            // height: "100vh",
+
+                            // alignItems: 'center',
+                            // paddingRight: theme.sizing.scale600,
+                            // paddingLeft: theme.sizing.scale600,
+
+                            marginTop: themes.sizing.scale800,
+                            color: themes.colors.primaryB
+                        })}
+
+                    >
+
+                        <Button shape={SHAPE.circle}>
+                            <Image src={RefreshIcon} alt="Generate Icon" />
+                        </Button>
+                    </div>
+
+                    <div
+                        className={css({
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginTop: themes.sizing.scale1000,
+                            color: themes.colors.primaryB
+
+                        })}>
+                        <Button
+                            size={SIZE.large}
+                            $style={{ width: "350px", textAlign: "center" }}
+                        >
+                            Take me there
+                            {'\u00A0'}
+                            {'\u00A0'}
+                            {'\u00A0'}
+                            <Image src={ArrowIcon} alt="Arrow Icon Pin" />
+                        </Button>
+
+                    </div>
+
+                    <div
+                        className={css({
+                            display: 'flex',
+                            justifyContent: 'space-evenly',
+                            alignItems: "center",
+                            marginTop: themes.sizing.scale1600,
+                            color: themes.colors.primaryB,
+                            maxWidth: "500px",
+                        })}
+                    >
+                        <Button
+                            size={SIZE.large}
+                            $style={{ width: "70px", margin: "10px", textAlign: "center" }}
+                        >
+                            <Display4
+                                color={themes.colors.accent700}
+                            >
+                                1
+                            </Display4>
+                        </Button>
+
+                        <Button
+                            size={SIZE.large}
+                            $style={{ width: "70px", margin: "10px", textAlign: "center" }}
+                        >
+                            <Display4
+                                color={themes.colors.accent700}
+                            >
+                                2
+                            </Display4>
+                        </Button>
+
+                        <Button
+                            size={SIZE.large}
+                            $style={{ width: "70px", margin: "10px", textAlign: "center" }}
+                        >
+                            <Display4
+                                color={themes.colors.accent700}
+                            >
+                                3
+                            </Display4>
+                        </Button>
+
+                    </div>
 
                 </main>
             </ThemeProvider >

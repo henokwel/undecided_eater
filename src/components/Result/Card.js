@@ -1,6 +1,7 @@
 
 import * as React from 'react';
 import { Card as MyCard, StyledBody, StyledAction } from 'baseui/card';
+import { Skeleton } from 'baseui/skeleton';
 import { Button } from 'baseui/button';
 import { useStyletron } from 'styletron-react';
 import {
@@ -11,12 +12,14 @@ import Pig1 from '../../assets/icons/pigprice1.svg'
 import Pig2 from '../../assets/icons/pigprice2.svg'
 import Pig3 from '../../assets/icons/pigprice3.svg'
 import Image from 'next/image';
+import { CardShadow } from './CardShadow';
 
 export const Card = ({ themes }) => {
     const [css] = useStyletron();
 
     return <div>
 
+        {/* <CardShadow themes={themes} /> */}
 
         <MyCard
 
@@ -52,11 +55,11 @@ export const Card = ({ themes }) => {
                 >
                     Rating: XX
                 </H6>
-                <div 
-                style={{
-                    display:"flex",
-                    alignItems:"center"
-                }}
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center"
+                    }}
                 >
 
                     <H6
