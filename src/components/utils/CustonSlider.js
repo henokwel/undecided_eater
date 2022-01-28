@@ -62,9 +62,9 @@ function SearchAreaRange({ handleSelect }) {
                     >
                         <div>{mToKm($min)}</div>
                         {/* <div>{mToKm(500)}</div> */}
-                        <div>{mToKm(1000)}</div>
+                        <div>{mToKm(1300)}</div>
                         {/* <div>{mToKm(1500)}</div> */}
-                        <div>{mToKm(2000)}</div>
+                        <div>{mToKm(2100)}</div>
                         <div>{mToKm($max)}</div>
                     </div>
                 ),

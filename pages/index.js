@@ -17,6 +17,9 @@ import { useStyletron } from 'baseui';
 import { Layer } from 'baseui/layer';
 import { Wrapper } from '../src/components/utils/PromptWrapper';
 import SearchAreaRange from '../src/components/utils/CustonSlider';
+import { useRouter } from 'next/router';
+import { route } from 'next/dist/server/router';
+import Link from 'next/link';
 
 
 const THEME = {
@@ -38,7 +41,7 @@ export default function Home() {
   const [priceRange, setPriceRange] = useState(null);
   const [searchArea, setSearchArea] = useState(null);
 
-
+  const router = useRouter()
 
 
 
@@ -59,9 +62,13 @@ export default function Home() {
   // Handle Location Prompt
   const handleLocation = () => {
     setLocationRequirePromt(false)
-    // launch promt
+
+    // launch Permission promt
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(handleLocationSucces, handleLocationError);
+    } else {
+      console.error("UnSupported")
+      // Add handler for this event
     }
   }
 
@@ -84,8 +91,20 @@ export default function Home() {
 
   const handleSearchSubmit = () => {
 
-    // Route to Result Page
+    const coreState = {
+      lat: locationStatus.lat, lon: locationStatus.long,
+      area: searchArea[0],
+      price: priceRange
+    }
     // Send data as props
+    // Route to Result Page
+
+    console.log('CoreSatet', coreState);
+
+    router.push({
+      pathname: "/result",
+      query: coreState
+    })
 
 
   }
@@ -237,7 +256,9 @@ export default function Home() {
 
               }}
               size={SIZE.large}>
+              {/* <Link href="/result"> */}
               Search
+              {/* </Link> */}
               {'\u00A0'}
               {'\u00A0'}
               {'\u00A0'}
