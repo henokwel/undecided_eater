@@ -75,7 +75,7 @@ export default function Home() {
 
   // Handle Search Area
   const handleSearchArea = (range) => {
-    setSearchArea(range)
+    setSearchArea(range[0])
   }
 
 
@@ -93,7 +93,7 @@ export default function Home() {
 
     const coreState = {
       lat: locationStatus.lat, lon: locationStatus.long,
-      area: searchArea[0],
+      area: searchArea,
       price: priceRange
     }
     

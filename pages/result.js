@@ -30,6 +30,8 @@ import {
     Paragraph4,
     H5
 } from 'baseui/typography';
+import { Quote } from '../src/components/Result/Quote';
+import { Card } from '../src/components/Result/Card';
 
 
 const THEME = {
@@ -155,60 +157,7 @@ export default function Home() {
                         : null
                 } */}
 
-
-                <div
-                    className={css({
-                        display: 'flex',
-                        flexDirection: "column",
-                        alignItems: "flex-end",
-                        color: themes.colors.primaryB
-                    })}
-                >
-                    {/* <p
-                        style={{
-                            fontWeight: "600",
-                            fontSize: "22px",
-                            lineHeight: "29px",
-                            margin: "5px 10px 1px 0",
-                            letterSpacing: "1.7px"
-                        }}
-                    >indecision</p> */}
-                    {/* 
-                    <p
-                        style={{
-                            fontStyle: "italic",
-                            fontSize: "13px",
-                            lineHeight: "14px",
-                            margin: "1px 10px 1px 0"
-                        }}
-                    >noun</p> */}
-                    <H5
-                        margin="5px 10px 1px 0"
-                    >
-                        indecision
-                    </H5>
-
-                    <Paragraph4
-                        margin="1px 10px 1px 0px"
-                    >
-                        noun
-                    </Paragraph4>
-                    <Paragraph3
-                        margin="1px 10px 1px 0px"
-                    >
-                        the inability to make a decision quickly
-                    </Paragraph3>
-                    {/* 
-                    <p
-                        style={{
-                            fontSize: "13px",
-                            lineHeight: "26px",
-                            margin: "1px 10px 1px 0"
-                        }}
-                    >the inability to make a decision quickly</p> */}
-
-                </div>
-
+                <Quote themes={themes} />
 
                 <main
                     className={css({
@@ -225,115 +174,11 @@ export default function Home() {
                     })}
                 >
 
-
-                    <div>
-                        <section className={styles.locationSection}
-                        >
-                            <h1 style={{
-                                fontSize: '32px',
-                                fontWeight: '600',
-                                marginBottom: '15px',
-                                lineHeight: '42px',
-                                // color: "white"
-                            }}>
-                                Your   <br />
-                                Current   <br />
-                                Location   <br />
-                            </h1>
-
-                            <div style={{ display: "flex" }}>
-
-                                {
-                                    locationStatus.lat === null ?
-                                        <>
-                                            <Button
-                                                onClick={() => setLocationRequirePromt(true)}
-                                                $style={{
-                                                    color: "#0054A9",
-                                                    fontWeight: "600",
-                                                    marginRight: "12px"
-
-                                                }}
-                                                size={SIZE.large}>
-                                                Get Location
-                                            </Button>
-                                            <Image src={LocationIcon} alt="Location Pin Icon" />
-                                        </>
-                                        :
-                                        <Image src={ThumbUp} alt="Thumb up  Icon" />
-
-                                }
-
-                            </div>
-                        </section>
-
-                        <section className={styles.searchAreaSection}>
-                            <h1 style={{
-                                fontSize: '32px',
-                                fontWeight: '600',
-                                marginBottom: '15px',
-                                lineHeight: '42px',
-                                // color: "white"
-                            }}>
-                                Search   <br />
-                                Area   <br />
-                            </h1>
-
-                            <div style={{ display: "flex" }}>
-                                <SearchAreaRange handleSelect={handleSearchArea} />
-                            </div>
-                        </section>
+                    <Card themes={themes} />
 
 
+                    
 
-                        <section className={styles.priceSection}>
-                            <h1 style={{
-                                fontSize: '32px',
-                                fontWeight: '600',
-                                marginBottom: '15px',
-                                lineHeight: '42px',
-                                // color: "white"
-                            }}>
-                                Price <br />
-                                Range
-                            </h1>
-
-                            <div style={{ display: "flex" }}>
-                                <PriceToggler handleSelect={handlePriceSelect} />
-                            </div>
-                        </section>
-
-                    </div>
-
-
-
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            marginTop: "20px"
-                        }}>
-                        <Button
-                            onClick={handleSearchSubmit}
-                            $style={{
-                                color: "#0054A9",
-                                fontWeight: "600",
-                                width: "254px"
-                                // marginRight: "12px"
-
-                            }}
-                            size={SIZE.large}>
-                            {/* <Link href="/result"> */}
-                            Search
-                            {/* </Link> */}
-                            {'\u00A0'}
-                            {'\u00A0'}
-                            {'\u00A0'}
-                            <Image src={ArrowIcon} alt="Arrow Icon Pin" />
-
-
-                        </Button>
-                    </div>
                 </main>
             </ThemeProvider >
 
