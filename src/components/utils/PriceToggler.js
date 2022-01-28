@@ -51,13 +51,13 @@ export default function PriceToggler() {
                 id="buttonGroup"
             >
                 <Button>
-                    <Image src={Pig1} />
+                    <Image src={Pig1} alt="One Dollar sign" />
                 </Button>
                 <Button>
-                    <Image src={Pig2} />
+                    <Image src={Pig2} alt="Two Dollar sign" />
                 </Button>
                 <Button>
-                    <Image src={Pig3} />
+                    <Image src={Pig3} alt="Three Dollar sign" />
                 </Button>
             </ButtonGroup>
         </ThemeProvider>

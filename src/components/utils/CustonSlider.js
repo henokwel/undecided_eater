@@ -23,7 +23,7 @@ function CustomTicks() {
             overrides={{
                 Root: {
                     style: {
-                        marginTop: '24px',
+                        marginTop: '4px',
                         maxWidth:'600px'
                     },
                 },
@@ -33,11 +33,11 @@ function CustomTicks() {
                         className={css({
                             position: 'absolute',
                             top: `-${theme.sizing.scale800}`,
-                            ...theme.typography.font200,
+                            ...theme.typography.font300,
                             backgroundColor: 'transparent',
                         })}
                     >
-                        {$value}m
+                        {$value}
                     </div>
                 ),
                 TickBar: ({ $min, $max }) => (

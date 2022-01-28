@@ -8,19 +8,38 @@ import { ThemeProvider, LightTheme, DarkTheme } from 'baseui';
 import { Button, SIZE } from 'baseui/button';
 import LocationIcon from '../src/assets/icons/location--filled.svg'
 import ArrowIcon from '../src/assets/icons/ArrowIcon.svg'
+import ThumbUp from '../src/assets/icons/thumbs-up--filled 1.svg'
+
 
 import CustomTicks from '../src/components/utils/CustonSlider';
 import PriceToggler from '../src/components/utils/PriceToggler';
 import { useStyletron } from 'baseui';
+import { Layer } from 'baseui/layer';
+import { Wrapper } from '../src/components/utils/PromptWrapper';
+
 
 const THEME = {
   light: 'light',
   dark: 'dark',
 };
 
+
+
+
 export default function Home() {
   const [theme, setTheme] = React.useState(THEME.dark);
+  const [locationRequirePromt, setLocationRequirePromt] = React.useState(false);
+  const [locationStatus, setLocationStatus] = React.useState(true);
   const [css, themes] = useStyletron();
+
+  const handleLocation = () => {
+
+    console.log('Fetch location');
+    setLocationRequirePromt(false)
+    // launch promt
+
+
+  }
 
 
   return (
@@ -32,6 +51,31 @@ export default function Home() {
       </Head>
 
       <ThemeProvider theme={theme === THEME.light ? LightTheme : DarkTheme}>
+
+
+        {
+
+          locationRequirePromt ?
+
+            <Layer>
+              <Wrapper>
+                <Button
+                  onClick={handleLocation}
+                  $style={{
+                    color: "#0054A9",
+                    fontWeight: "600",
+                    marginBottom: "12px",
+                    minWidth: "251px"
+
+                  }}
+                  size={SIZE.large}>
+                  I Understand
+                </Button>
+              </Wrapper>
+            </Layer>
+            : null
+        }
+
         <main
           className={css({
             display: 'flex',
@@ -46,9 +90,11 @@ export default function Home() {
             color: themes.colors.primaryB
           })}
         >
-          <div>
 
-            <section className={styles.locationSection}>
+
+          <div>
+            <section className={styles.locationSection}
+            >
               <h1 style={{
                 fontSize: '32px',
                 fontWeight: '600',
@@ -62,22 +108,32 @@ export default function Home() {
               </h1>
 
               <div style={{ display: "flex" }}>
-                <Button
-                  $style={{
-                    color: "#0054A9",
-                    fontWeight: "600",
-                    marginRight: "12px"
 
-                  }}
-                  size={SIZE.large}>
-                  Get Location
-                </Button>
-                <Image src={LocationIcon} />
+                {
+                  locationStatus ?
+                    <>
+                      <Button
+                        onClick={() => setLocationRequirePromt(true)}
+                        $style={{
+                          color: "#0054A9",
+                          fontWeight: "600",
+                          marginRight: "12px"
+
+                        }}
+                        size={SIZE.large}>
+                        Get Location
+                      </Button>
+                      <Image src={LocationIcon} alt="Location Pin Icon" />
+                    </>
+                    :
+                    <Image src={ThumbUp} alt="Thumb up  Icon" />
+
+                }
+
               </div>
             </section>
 
-
-            <section>
+            <section className={styles.searchAreaSection}>
               <h1 style={{
                 fontSize: '32px',
                 fontWeight: '600',
@@ -127,7 +183,7 @@ export default function Home() {
 
                 color: "#0054A9",
                 fontWeight: "600",
-                width:"154px"
+                width: "254px"
                 // marginRight: "12px"
 
               }}
@@ -136,7 +192,7 @@ export default function Home() {
               {'\u00A0'}
               {'\u00A0'}
               {'\u00A0'}
-              <Image src={ArrowIcon} />
+              <Image src={ArrowIcon} alt="Arrow Icon Pin" />
 
 
             </Button>
