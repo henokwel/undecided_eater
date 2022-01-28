@@ -34,7 +34,6 @@ export const Wrapper = (props) => {
                     display: 'flex',
                     flexDirection: "column",
                     justifyContent: 'space-between',
-                    
                     height: "100vh",
                     color: "white",
                     fontWeight: "600",
@@ -49,8 +48,8 @@ export const Wrapper = (props) => {
                         display: 'flex',
                         flexDirection: "column",
                         justifyContent: 'space-between',
-                        
-                        alignItems:"center",
+
+                        alignItems: "center",
                         height: "50%",
 
                     })}>
@@ -74,20 +73,6 @@ export const Wrapper = (props) => {
                             height: "50%",
                             // color: themes.colors.primaryB
                         })}>
-
-                        {/* Pass as children */}
-
-                        {/* <Button
-                  $style={{
-                    color: "#0054A9",
-                    fontWeight: "600",
-                    // marginRight: "12px",
-                    minWidth: "251px"
-  
-                  }}
-                  size={SIZE.large}>
-                  I Understand
-                </Button> */}
 
                         {children}
                     </div>

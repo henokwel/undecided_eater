@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
@@ -16,6 +16,7 @@ import PriceToggler from '../src/components/utils/PriceToggler';
 import { useStyletron } from 'baseui';
 import { Layer } from 'baseui/layer';
 import { Wrapper } from '../src/components/utils/PromptWrapper';
+import SearchAreaRange from '../src/components/utils/CustonSlider';
 
 
 const THEME = {
@@ -29,14 +30,62 @@ const THEME = {
 export default function Home() {
   const [theme, setTheme] = React.useState(THEME.dark);
   const [locationRequirePromt, setLocationRequirePromt] = React.useState(false);
-  const [locationStatus, setLocationStatus] = React.useState(true);
+  // const [locationStatus, setLocationStatus] = React.useState(true);
   const [css, themes] = useStyletron();
 
-  const handleLocation = () => {
+  // Location State
+  const [locationStatus, setLocationStatus] = useState({ error: false, lat: null, long: null });
+  const [priceRange, setPriceRange] = useState(null);
+  const [searchArea, setSearchArea] = useState(null);
 
-    console.log('Fetch location');
+
+
+
+
+
+  // Get Location Fn()
+  // Handle Location Succes
+  const handleLocationSucces = (pos) => {
+    const crd = pos.coords;
+    setLocationStatus({ error: false, lat: crd.latitude, long: crd.longitude })
+  }
+
+  // Handle Location Error
+  const handleLocationError = (err) => {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+    setLocationStatus({ error: true, long: null, lat: null })
+  }
+
+  // Handle Location Prompt
+  const handleLocation = () => {
     setLocationRequirePromt(false)
     // launch promt
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(handleLocationSucces, handleLocationError);
+    }
+  }
+
+
+  // Handle Search Area
+  const handleSearchArea = (range) => {
+    setSearchArea(range)
+  }
+
+
+  // handle Price range
+  const handlePriceSelect = (price) => {
+    console.log('Price', price);
+    setPriceRange(price)
+  }
+
+
+
+  // Handle Submit
+
+  const handleSearchSubmit = () => {
+
+    // Route to Result Page
+    // Send data as props
 
 
   }
@@ -52,7 +101,6 @@ export default function Home() {
 
       <ThemeProvider theme={theme === THEME.light ? LightTheme : DarkTheme}>
 
-
         {
 
           locationRequirePromt ?
@@ -60,7 +108,7 @@ export default function Home() {
             <Layer>
               <Wrapper>
                 <Button
-                  onClick={handleLocation}
+                  onClick={() => handleLocation()}
                   $style={{
                     color: "#0054A9",
                     fontWeight: "600",
@@ -110,7 +158,7 @@ export default function Home() {
               <div style={{ display: "flex" }}>
 
                 {
-                  locationStatus ?
+                  locationStatus.lat === null ?
                     <>
                       <Button
                         onClick={() => setLocationRequirePromt(true)}
@@ -146,7 +194,7 @@ export default function Home() {
               </h1>
 
               <div style={{ display: "flex" }}>
-                <CustomTicks />
+                <SearchAreaRange handleSelect={handleSearchArea} />
               </div>
             </section>
 
@@ -160,11 +208,12 @@ export default function Home() {
                 lineHeight: '42px',
                 // color: "white"
               }}>
-                Price
+                Price <br />
+                Range
               </h1>
 
               <div style={{ display: "flex" }}>
-                <PriceToggler />
+                <PriceToggler handleSelect={handlePriceSelect} />
               </div>
             </section>
 
@@ -179,8 +228,8 @@ export default function Home() {
               marginTop: "20px"
             }}>
             <Button
+              onClick={handleSearchSubmit}
               $style={{
-
                 color: "#0054A9",
                 fontWeight: "600",
                 width: "254px"

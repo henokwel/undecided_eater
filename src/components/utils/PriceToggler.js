@@ -35,9 +35,19 @@ const overrides = {
 const themes = createTheme(primitives, overrides);
 
 
-export default function PriceToggler() {
+export default function PriceToggler({ handleSelect }) {
     const [selected, setSelected] = React.useState();
     const [css, theme] = useStyletron();
+
+
+    const _handleSelect = (index) => {
+        // Set Current State
+        setSelected(index);
+
+        // Pass State Index
+        handleSelect(index)
+    }
+
 
     return (
         <ThemeProvider theme={themes}>
@@ -45,9 +55,11 @@ export default function PriceToggler() {
             <ButtonGroup
                 mode={MODE.radio}
                 selected={selected}
+
                 onClick={(event, index) => {
-                    setSelected(index);
+                    _handleSelect(index);
                 }}
+
                 id="buttonGroup"
             >
                 <Button>

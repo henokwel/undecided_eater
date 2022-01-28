@@ -4,9 +4,17 @@ import { useStyletron } from 'baseui';
 
 const mToKm = (value) => `${(value / 1000).toFixed(1)}km`;
 
-function CustomTicks() {
+function SearchAreaRange({ handleSelect }) {
     const [value, setValue] = React.useState([500]);
     const [css, theme] = useStyletron();
+
+    const handleChange = (value) => {
+        // Update current state
+        setValue(value);
+        // Send state to Index
+        handleSelect(value)
+    }
+
     return (
         <Slider
             value={value}
@@ -15,16 +23,16 @@ function CustomTicks() {
             step={100}
             onChange={params => {
                 if (params.value) {
-                    setValue(params.value);
+                    handleChange(params.value);
                 } else {
-                    setValue([]);
+                    handleChange([]);
                 }
             }}
             overrides={{
                 Root: {
                     style: {
                         marginTop: '4px',
-                        maxWidth:'600px'
+                        maxWidth: '600px'
                     },
                 },
                 InnerThumb: () => null,
@@ -49,7 +57,7 @@ function CustomTicks() {
                             paddingRight: theme.sizing.scale600,
                             paddingLeft: theme.sizing.scale600,
                             paddingBottom: theme.sizing.scale400,
-                            color:theme.colors.primary
+                            color: theme.colors.primary
                         })}
                     >
                         <div>{mToKm($min)}</div>
@@ -65,4 +73,4 @@ function CustomTicks() {
     );
 }
 
-export default CustomTicks;
+export default SearchAreaRange;
