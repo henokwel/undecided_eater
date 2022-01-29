@@ -27,9 +27,9 @@ export const Card = ({ themes }) => {
                 Root: {
                     style: {
                         maxWidth: '528px',
-                        borderRadius: themes.borders.radius100,
-                        border: themes.colors.borderTransparent,
-                        background: "transparent",
+                        borderRadius: themes.borders.radius,
+                        // border: themes.colors.borderTransparent,
+                        // background: "transparent",
                         marginTop: themes.sizing.scale1200,
 
                     }
@@ -40,35 +40,30 @@ export const Card = ({ themes }) => {
             }
         // title="Example card"
         >
-            <StyledBody
 
-            >
-                <H6
-                    margin="15px 10px 1px 0px"
 
-                >
+
+            <StyledBody>
+
+                <H6 margin="15px 10px 1px 0px">
                     Name: XX
                 </H6>
-                <H6
-                    margin="15px 10px 1px 0px"
 
-                >
+                <H6 margin="15px 10px 1px 0px">
                     Rating: XX
                 </H6>
+
                 <div
                     style={{
                         display: "flex",
                         alignItems: "center"
-                    }}
-                >
+                    }}>
 
-                    <H6
-                        margin="15px 10px 10px 0px"
 
-                    >
+                    <H6 margin="15px 10px 10px 0px">
                         Price:
-
                     </H6>
+
                     <Image
                         layout="fixed"
                         // width={43}

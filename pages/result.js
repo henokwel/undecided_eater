@@ -1,44 +1,20 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { Skeleton } from "baseui/skeleton";
 import { ThemeProvider, LightTheme, DarkTheme } from 'baseui';
 import { Button, SIZE, SHAPE } from 'baseui/button';
-import LocationIcon from '../src/assets/icons/location--filled.svg'
 import ArrowIcon from '../src/assets/icons/ArrowIcon.svg'
 import RefreshIcon from '../src/assets/icons/reload-icon.svg'
-
-
-import CustomTicks from '../src/components/utils/SearchAreaRange';
-import PriceToggler from '../src/components/utils/PriceToggler';
 import { useStyletron } from 'baseui';
-import { Layer } from 'baseui/layer';
-import { Wrapper } from '../src/components/utils/PromptWrapper';
-import SearchAreaRange from '../src/components/utils/SearchAreaRange';
 import { useRouter } from 'next/router';
-
-import {
-    AspectRatioBox,
-    AspectRatioBoxBody,
-} from 'baseui/aspect-ratio-box';
-
-import {
-    Label1,
-    Label2,
-    Label3,
-    Label4,
-    Paragraph1,
-    Paragraph2,
-    Paragraph3,
-    Paragraph4,
-    H5,
-    Display2,
-    Display4
-} from 'baseui/typography';
+import { Display4 } from 'baseui/typography';
 import { Quote } from '../src/components/Result/Quote';
 import { Card } from '../src/components/Result/Card';
+import { CardShadow } from '../src/components/Result/CardShadow';
+
 
 
 const THEME = {
@@ -47,123 +23,138 @@ const THEME = {
 };
 
 
+const OnlyOnceUseEffect = (callBack) => {
+    const initLoad = useRef(false)
+
+    useEffect(() => {
+        if (initLoad.current) {
+            callBack()
+            initLoad.current = true
+            console.log('Run Once');
+
+        }
+    });
+}
 
 
+export default function Home({ props }) {
 
+    console.log('Props', props);
 
-export default function Home() {
     const [theme, setTheme] = React.useState(THEME.dark);
-    const [locationRequirePromt, setLocationRequirePromt] = React.useState(false);
-    // const [locationStatus, setLocationStatus] = React.useState(true);
     const [css, themes] = useStyletron();
-
-    // Location State
-    const [locationStatus, setLocationStatus] = useState({ error: false, lat: null, long: null });
-    const [priceRange, setPriceRange] = useState(null);
-    const [searchArea, setSearchArea] = useState(null);
+    // const [first, setfirst] = useState(second);
 
     const router = useRouter()
+    const query = router.query
 
+    const fetchData = async () => {
+        const { price } = query
 
-
-
-    // Get Location Fn()
-    // Handle Location Succes
-    const handleLocationSucces = (pos) => {
-        const crd = pos.coords;
-        setLocationStatus({ error: false, lat: crd.latitude, long: crd.longitude })
-    }
-
-    // Handle Location Error
-    const handleLocationError = (err) => {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-        setLocationStatus({ error: true, long: null, lat: null })
-    }
-
-    // Handle Location Prompt
-    const handleLocation = () => {
-        setLocationRequirePromt(false)
-
-        // launch Permission promt
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(handleLocationSucces, handleLocationError);
-        } else {
-            console.error("UnSupported")
-            // Add handler for this event
-        }
-    }
-
-
-    // Handle Search Area
-    const handleSearchArea = (range) => {
-        setSearchArea(range)
-    }
-
-
-    // handle Price range
-    const handlePriceSelect = (price) => {
-        console.log('Price', price);
-        setPriceRange(price)
-    }
-
-
-
-    // Handle Submit
-
-    const handleSearchSubmit = () => {
-
-        const coreState = {
-            lat: locationStatus.lat, lon: locationStatus.long,
-            area: searchArea[0],
-            price: priceRange
-        }
-        // Send data as props
-        // Route to Result Page
-
-        console.log('CoreSatet', coreState);
-
-        router.push({
-            pathname: "/result",
-            query: coreState
+        const res = await fetch("/api/hello", {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            method: 'POST',
+            body: JSON.stringify({ query })
         })
+        const data = await res.json()
+
+        console.log("Data REsult", data);
+
+        // filter Operation
+        // const allWorking = data.results.filter(place => place.business_status === "OPERATIONAL")
+
+        // Check for operational status
+        const allWorkingRestaurants = data.filter(place => place.business_status === "OPERATIONAL")
+        // filter the highest ranking
+        const highestRatedRestaurants = allWorkingRestaurants.sort((a, b) => {
+            if (a.rating > b.rating)
+                return -1;
+            if (a.rating < b.rating)
+                return 1;
+            return 0;
+        })
+
+        // Filter out resturant without Price level
+        const restaurantsWithPriceLvL = highestRatedRestaurants.filter(place => place.hasOwnProperty("price_level") )
+        console.log(restaurantsWithPriceLvL);
+        
+
+
+
+        // check if user has price range & sort in order
+        // price, 0 === cheapest
+
+        // if (price <= 2) {
+        //     highestRating.sort(() => {
+        //         if (a.rating > b.rating)
+        //             return -1;
+        //         if (a.rating < b.rating)
+        //             return 1;
+        //         return 0;
+        //     })
+        // }
+
+
+
+
+
+
+
+
+
     }
+
+
+    // OnlyOnceUseEffect(() => {
+    //     fetchData()
+    // })
+
+
+
+
+
+
+    useEffect(() => {
+        const { area, lat, lon, price } = query
+        console.log('Area', area);
+        console.log('Lan', lat);
+        console.log('Lon', lon);
+        console.log('Price', price);
+
+        // console.log('Init Result', query);
+        // Fetch Data and set Result
+
+        fetchData()
+
+    }, [])
+
+
+
 
 
 
     return (
-        <div className={styles.container}>
+        <div
+            className={css({
+                display: "flex",
+                flexDirection: "column",
+                // justifyContent:"space-between",
+                minHeight: "100vh",
+                paddingLeft: "5%",
+
+            })}
+        >
             <Head>
-                <title>Create Next App</title>
+                <title>Results</title>
                 <meta name="description" content="Generated by create next app" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <ThemeProvider theme={theme === THEME.light ? LightTheme : DarkTheme}>
 
-                {/* {
-
-                    locationRequirePromt ?
-
-                        <Layer>
-                            <Wrapper>
-                                <Button
-                                    onClick={() => handleLocation()}
-                                    $style={{
-                                        color: "#0054A9",
-                                        fontWeight: "600",
-                                        marginBottom: "12px",
-                                        minWidth: "251px"
-
-                                    }}
-                                    size={SIZE.large}>
-                                    I Understand
-                                </Button>
-                            </Wrapper>
-                        </Layer>
-                        : null
-                } */}
-
                 <Quote themes={themes} />
+
+                {/* <CardShadow  themes={themes}/> */}
 
                 <main
                     className={css({
@@ -171,15 +162,8 @@ export default function Home() {
                         flexDirection: "column",
                         justifyContent: 'space-between',
                         alignItems: "center",
-                        // height: "100vh",
-
-                        // alignItems: 'center',
-                        // paddingRight: theme.sizing.scale600,
-                        // paddingLeft: theme.sizing.scale600,
-                        // paddingBottom: theme.sizing.scale400,
                         color: themes.colors.primaryB
-                    })}
-                >
+                    })}>
 
                     <Card themes={themes} />
 
@@ -188,19 +172,10 @@ export default function Home() {
                             display: 'flex',
                             // flexDirection: "column",
                             justifyContent: 'center',
-
                             maxWidth: '528px',
-                            // height: "100vh",
-
-                            // alignItems: 'center',
-                            // paddingRight: theme.sizing.scale600,
-                            // paddingLeft: theme.sizing.scale600,
-
                             marginTop: themes.sizing.scale800,
                             color: themes.colors.primaryB
-                        })}
-
-                    >
+                        })}>
 
                         <Button shape={SHAPE.circle}>
                             <Image src={RefreshIcon} alt="Generate Icon" />
@@ -213,19 +188,17 @@ export default function Home() {
                             justifyContent: 'center',
                             marginTop: themes.sizing.scale1000,
                             color: themes.colors.primaryB
-
                         })}>
+
                         <Button
                             size={SIZE.large}
-                            $style={{ width: "350px", textAlign: "center" }}
-                        >
+                            $style={{ width: "350px", textAlign: "center" }}>
                             Take me there
                             {'\u00A0'}
                             {'\u00A0'}
                             {'\u00A0'}
                             <Image src={ArrowIcon} alt="Arrow Icon Pin" />
                         </Button>
-
                     </div>
 
                     <div
@@ -236,37 +209,32 @@ export default function Home() {
                             marginTop: themes.sizing.scale1600,
                             color: themes.colors.primaryB,
                             maxWidth: "500px",
-                        })}
-                    >
+                        })}>
+
                         <Button
                             size={SIZE.large}
                             $style={{ width: "70px", margin: "10px", textAlign: "center" }}
                         >
-                            <Display4
-                                color={themes.colors.accent700}
-                            >
+                            <Display4 color={themes.colors.accent700}>
                                 1
                             </Display4>
                         </Button>
 
                         <Button
                             size={SIZE.large}
-                            $style={{ width: "70px", margin: "10px", textAlign: "center" }}
-                        >
-                            <Display4
-                                color={themes.colors.accent700}
-                            >
+                            $style={{ width: "70px", margin: "10px", textAlign: "center" }}>
+
+                            <Display4 color={themes.colors.accent700}>
                                 2
                             </Display4>
                         </Button>
 
                         <Button
+
                             size={SIZE.large}
-                            $style={{ width: "70px", margin: "10px", textAlign: "center" }}
-                        >
-                            <Display4
-                                color={themes.colors.accent700}
-                            >
+                            $style={{ width: "70px", margin: "10px", textAlign: "center" }}>
+
+                            <Display4 color={themes.colors.accent700}>
                                 3
                             </Display4>
                         </Button>
@@ -280,3 +248,14 @@ export default function Home() {
         </div >
     )
 }
+
+
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await fetch("http://localhost:3000/api/hello")
+//   const data = await res.json()
+
+//   // Pass data to the page via props
+//   return { props: { data } }
+// }
+

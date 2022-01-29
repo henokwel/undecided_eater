@@ -96,14 +96,15 @@ export default function Home() {
       area: searchArea,
       price: priceRange
     }
-    
+
     console.log('CoreSatet', coreState);
 
+
+ 
     router.push({
       pathname: "/result",
       query: coreState
     })
-
 
   }
 
@@ -282,3 +283,15 @@ export default function Home() {
     </div>
   )
 }
+
+
+
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await fetch("http://localhost:3000/api/hello")
+//   const data = await res.json()
+
+//   // Pass data to the page via props
+//   return { props: { data } }
+// }
+

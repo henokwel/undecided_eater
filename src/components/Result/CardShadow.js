@@ -3,19 +3,41 @@ import { Skeleton } from 'baseui/skeleton';
 import { useStyletron } from 'styletron-react';
 
 
-export const CardShadow = ({themes}) => {
+export const CardShadow = ({ themes }) => {
     const [css] = useStyletron();
 
-    return <div>
+    return <div
+        className={css({
+            display: 'flex',
+            flexDirection: "column",
+            justifyContent: 'center',
+            alignItems: "center",
+            marginTop: themes.sizing.scale800,
+        })}
+    >
 
-
-        <Skeleton width="528px" height="463px" animation />
 
         <Skeleton
             overrides={{
                 Root: {
                     style: {
-                        margin: "10px 0px 10px 0px"
+                        margin: "10px 0px 10px 0px",
+                        // background: themes.colors.accent,
+                        boxShadow: themes.lighting.shadow600
+
+                    },
+                },
+            }}
+
+            width="528px" height="463px" animation />
+
+        <Skeleton
+            overrides={{
+                Root: {
+                    style: {
+                        margin: "10px 0px 10px 0px",
+                        // background: themes.colors.accent,
+                        boxShadow: themes.lighting.shadow600
 
                     },
                 },
@@ -26,7 +48,10 @@ export const CardShadow = ({themes}) => {
             overrides={{
                 Root: {
                     style: {
-                        margin: "10px 0px 10px 0px"
+                        margin: "10px 0px 10px 0px",
+                        // background: themes.colors.accent,
+                        boxShadow: themes.lighting.shadow600
+
                     },
                 },
             }}
@@ -41,7 +66,9 @@ export const CardShadow = ({themes}) => {
             overrides={{
                 Root: {
                     style: {
-                        margin: "10px 0px 10px 0px"
+                        margin: "10px 0px 10px 0px",
+                        // background: themes.colors.accent,
+                        boxShadow: themes.lighting.shadow600
                     },
                 },
             }}
@@ -81,7 +108,8 @@ export const CardShadow = ({themes}) => {
                     Root: {
                         style: {
                             borderRadius: '50%',
-                            marginBottom: "30px"
+                            marginBottom: "30px",
+                            boxShadow: themes.lighting.shadow600
 
                         },
                     },
@@ -90,7 +118,18 @@ export const CardShadow = ({themes}) => {
 
 
         </div>
-        <Skeleton width="350px" height="56px" animation />
+        <Skeleton
+            overrides={{
+                Root: {
+                    style: {
+                        // margin: "10px 0px 10px 0px",
+                        // background: themes.colors.accent,
+                        boxShadow: themes.lighting.shadow600
+
+                    },
+                },
+            }}
+            width="350px" height="56px" animation />
 
 
     </div>;

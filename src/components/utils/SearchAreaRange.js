@@ -28,6 +28,7 @@ function SearchAreaRange({ handleSelect }) {
                     handleChange([]);
                 }
             }}
+            
             overrides={{
                 Root: {
                     style: {
@@ -68,6 +69,7 @@ function SearchAreaRange({ handleSelect }) {
                         {/* <div></div> */}
                         <div>{mToKm(2000)}</div>
                         {/* <div></div> */}
+                        
                         <div>{mToKm($max)}</div>
                     </div>
                 ),
