@@ -38,6 +38,7 @@ const OnlyOnceUseEffect = (callBack) => {
 
 
 export default function Home({ props }) {
+    const [resturantsArray, setResturantsArray] = useState([]);
 
     console.log('Props', props);
 
@@ -85,7 +86,8 @@ export default function Home({ props }) {
 
 
         // check if user has price range & sort in order
-        // price, 0 === cheapest
+
+
 
         restaurantsWithPriceLvL.sort((a, b) => {
             if (a.price_level > b.price_level)
@@ -94,6 +96,8 @@ export default function Home({ props }) {
                 return 1;
             return 0;
         })
+
+
         // One Pig Star
         const onePigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level <= 2)
 
@@ -103,20 +107,27 @@ export default function Home({ props }) {
 
         //  Three Pig Start
         const threePigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level >= 3)
-
-
         console.log("three", threePigRestaurants);
 
 
 
 
+        switch (price) {
+            case 0:
+
+                return setResturantsArray(onePigRestaurants)
 
 
-        // console.log("After one pig", restaurantsWithPriceLvL);
+                break;
+            case 1:
+                return setResturantsArray(twoPigRestaurants)
 
-
-
-
+            case 2:
+                return setResturantsArray(threePigRestaurants)
+            default:
+                return setResturantsArray(onePigRestaurants)
+                break;
+        }
 
 
     }
