@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Result.module.css'
 import { Skeleton } from "baseui/skeleton";
 import { ThemeProvider, LightTheme, DarkTheme } from 'baseui';
 import { Button, SIZE, SHAPE } from 'baseui/button';
@@ -75,27 +75,44 @@ export default function Home({ props }) {
         })
 
         // Filter out resturant without Price level
-        const restaurantsWithPriceLvL = highestRatedRestaurants.filter(place => place.hasOwnProperty("price_level") )
-        console.log(restaurantsWithPriceLvL);
-        
+        const restaurantsWithPriceLvL = highestRatedRestaurants.filter(place => place.hasOwnProperty("price_level"))
 
+        console.log("Before one pig", restaurantsWithPriceLvL);
+
+
+
+        // price_level ==>   0 free , 1 Inexpensive, 2 Moderate,  3 Expensive , 4 Very Expensive
 
 
         // check if user has price range & sort in order
         // price, 0 === cheapest
 
-        // if (price <= 2) {
-        //     highestRating.sort(() => {
-        //         if (a.rating > b.rating)
-        //             return -1;
-        //         if (a.rating < b.rating)
-        //             return 1;
-        //         return 0;
-        //     })
-        // }
+        restaurantsWithPriceLvL.sort((a, b) => {
+            if (a.price_level > b.price_level)
+                return -1;
+            if (a.price_level < b.price_level)
+                return 1;
+            return 0;
+        })
+        // One Pig Star
+        const onePigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level <= 2)
+
+        //  Two Pig Start
+        const twoPigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level === 3)// || foodPrice.price_level >= 2
+
+
+        //  Three Pig Start
+        const threePigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level >= 3)
+
+
+        console.log("three", threePigRestaurants);
 
 
 
+
+
+
+        // console.log("After one pig", restaurantsWithPriceLvL);
 
 
 

@@ -1,0 +1,36 @@
+.container {
+    min-height: 100vh;
+    /* width: 100vw; */
+    padding-left: 5%;
+  }
+  
+  .main {
+    min-height: 100vh;
+    padding: 4rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .locationSection {
+    padding-top: 12%;
+  }
+  .locationSection button {
+    width: 185px;
+  }
+  
+  .searchAreaSection {
+    padding-top: 2%;
+  
+    /* background-color: red; */
+  }
+  
+  .priceSection {
+    padding-top: 2%;
+  }
+  .priceSection [aria-checked="true"] {
+    background: #0054a9;
+  }
+  

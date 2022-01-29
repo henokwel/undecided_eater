@@ -27,7 +27,7 @@ export const Card = ({ themes }) => {
                 Root: {
                     style: {
                         maxWidth: '528px',
-                        borderRadius: themes.borders.radius,
+                        borderRadius: themes.borders.radius100,
                         // border: themes.colors.borderTransparent,
                         // background: "transparent",
                         marginTop: themes.sizing.scale1200,

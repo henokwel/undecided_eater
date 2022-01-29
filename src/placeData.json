@@ -1051,5 +1051,270 @@
         ],
         "user_ratings_total": 177,
         "vicinity": "Kungsbroplan 1, Stockholm"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 59.33173000000001,
+                "lng": 18.04942
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 59.33314647989272,
+                    "lng": 18.05062507989272
+                },
+                "southwest": {
+                    "lat": 59.33044682010728,
+                    "lng": 18.04792542010728
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Trattoria Villa Romana",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 4032,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/102674026816503610695\">Jenny Grahn</a>"
+                ],
+                "photo_reference": "Aap_uEB6B311Rhn9ZrpO0MHf_X4DTHzrB-DSOCm_frwKUjB3HGhO1N6TYpoOTgfO6IE7BBtUV6zyotCsZOrgU2Yrj1sxuBGEpcXNYoaankFCXpg7ormo1Dv9D9Fw4VCiUSW2hnsDEeOlDh9JbaNBlxuxYDb6iEpVt4L9_kmOg48cG_m9SzVJ",
+                "width": 3024
+            }
+        ],
+        "place_id": "ChIJOWPFkU6dX0YR4zlp5Rmx44A",
+        "plus_code": {
+            "compound_code": "82JX+MQ Stockholm",
+            "global_code": "9FFW82JX+MQ"
+        },
+        "rating": 4.2,
+        "price_level": 4,
+        "reference": "ChIJOWPFkU6dX0YR4zlp5Rmx44A",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 177,
+        "vicinity": "Kungsbroplan 1, Stockholm"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 59.33173000000001,
+                "lng": 18.04942
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 59.33314647989272,
+                    "lng": 18.05062507989272
+                },
+                "southwest": {
+                    "lat": 59.33044682010728,
+                    "lng": 18.04792542010728
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Trattoria Villa Romana",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 4032,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/102674026816503610695\">Jenny Grahn</a>"
+                ],
+                "photo_reference": "Aap_uEB6B311Rhn9ZrpO0MHf_X4DTHzrB-DSOCm_frwKUjB3HGhO1N6TYpoOTgfO6IE7BBtUV6zyotCsZOrgU2Yrj1sxuBGEpcXNYoaankFCXpg7ormo1Dv9D9Fw4VCiUSW2hnsDEeOlDh9JbaNBlxuxYDb6iEpVt4L9_kmOg48cG_m9SzVJ",
+                "width": 3024
+            }
+        ],
+        "place_id": "ChIJOWPFkU6dX0YR4zlp5Rmx44A",
+        "plus_code": {
+            "compound_code": "82JX+MQ Stockholm",
+            "global_code": "9FFW82JX+MQ"
+        },
+        "rating": 4.2,
+        "price_level": 4,
+        "reference": "ChIJOWPFkU6dX0YR4zlp5Rmx44A",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 177,
+        "vicinity": "Kungsbroplan 1, Stockholm"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 59.33173000000001,
+                "lng": 18.04942
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 59.33314647989272,
+                    "lng": 18.05062507989272
+                },
+                "southwest": {
+                    "lat": 59.33044682010728,
+                    "lng": 18.04792542010728
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Trattoria Villa Romana",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 4032,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/102674026816503610695\">Jenny Grahn</a>"
+                ],
+                "photo_reference": "Aap_uEB6B311Rhn9ZrpO0MHf_X4DTHzrB-DSOCm_frwKUjB3HGhO1N6TYpoOTgfO6IE7BBtUV6zyotCsZOrgU2Yrj1sxuBGEpcXNYoaankFCXpg7ormo1Dv9D9Fw4VCiUSW2hnsDEeOlDh9JbaNBlxuxYDb6iEpVt4L9_kmOg48cG_m9SzVJ",
+                "width": 3024
+            }
+        ],
+        "place_id": "ChIJOWPFkU6dX0YR4zlp5Rmx44A",
+        "plus_code": {
+            "compound_code": "82JX+MQ Stockholm",
+            "global_code": "9FFW82JX+MQ"
+        },
+        "rating": 4.2,
+        "price_level": 1,
+        "reference": "ChIJOWPFkU6dX0YR4zlp5Rmx44A",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 177,
+        "vicinity": "Kungsbroplan 1, Stockholm"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 59.33173000000001,
+                "lng": 18.04942
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 59.33314647989272,
+                    "lng": 18.05062507989272
+                },
+                "southwest": {
+                    "lat": 59.33044682010728,
+                    "lng": 18.04792542010728
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Trattoria Villa Romana",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 4032,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/102674026816503610695\">Jenny Grahn</a>"
+                ],
+                "photo_reference": "Aap_uEB6B311Rhn9ZrpO0MHf_X4DTHzrB-DSOCm_frwKUjB3HGhO1N6TYpoOTgfO6IE7BBtUV6zyotCsZOrgU2Yrj1sxuBGEpcXNYoaankFCXpg7ormo1Dv9D9Fw4VCiUSW2hnsDEeOlDh9JbaNBlxuxYDb6iEpVt4L9_kmOg48cG_m9SzVJ",
+                "width": 3024
+            }
+        ],
+        "place_id": "ChIJOWPFkU6dX0YR4zlp5Rmx44A",
+        "plus_code": {
+            "compound_code": "82JX+MQ Stockholm",
+            "global_code": "9FFW82JX+MQ"
+        },
+        "rating": 4.2,
+        "price_level": 1,
+        "reference": "ChIJOWPFkU6dX0YR4zlp5Rmx44A",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 177,
+        "vicinity": "Kungsbroplan 1, Stockholm"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "geometry": {
+            "location": {
+                "lat": 59.33173000000001,
+                "lng": 18.04942
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 59.33314647989272,
+                    "lng": 18.05062507989272
+                },
+                "southwest": {
+                    "lat": 59.33044682010728,
+                    "lng": 18.04792542010728
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+        "name": "Trattoria Villa Romana",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 4032,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/102674026816503610695\">Jenny Grahn</a>"
+                ],
+                "photo_reference": "Aap_uEB6B311Rhn9ZrpO0MHf_X4DTHzrB-DSOCm_frwKUjB3HGhO1N6TYpoOTgfO6IE7BBtUV6zyotCsZOrgU2Yrj1sxuBGEpcXNYoaankFCXpg7ormo1Dv9D9Fw4VCiUSW2hnsDEeOlDh9JbaNBlxuxYDb6iEpVt4L9_kmOg48cG_m9SzVJ",
+                "width": 3024
+            }
+        ],
+        "place_id": "ChIJOWPFkU6dX0YR4zlp5Rmx44A",
+        "plus_code": {
+            "compound_code": "82JX+MQ Stockholm",
+            "global_code": "9FFW82JX+MQ"
+        },
+        "rating": 4.2,
+        "price_level": 4,
+        "reference": "ChIJOWPFkU6dX0YR4zlp5Rmx44A",
+        "scope": "GOOGLE",
+        "types": [
+            "restaurant",
+            "food",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 177,
+        "vicinity": "Kungsbroplan 1, Stockholm"
     }
 ]
