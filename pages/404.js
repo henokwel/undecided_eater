@@ -1,20 +1,14 @@
 
 import React from 'react'
 import Head from 'next/head'
-
-
 import { ThemeProvider, LightTheme, DarkTheme } from 'baseui';
 import { useStyletron } from 'baseui';
 import { Display4 } from 'baseui/typography';
-
-
-
 
 const THEME = {
     light: 'light',
     dark: 'dark',
 };
-
 
 
 export default function NotFound({ props }) {

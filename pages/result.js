@@ -49,16 +49,11 @@ export default function Result({ props }) {
         })
         const data = await res.json()
 
-        // console.log("Data REsult", data);
-
-        const pickRandomResturant = Math.floor(Math.random() * data.length || 10)
+        const pickRandomResturant = Math.floor(Math.random() * data.length )
         setCurrentDisplay(data[pickRandomResturant])
         setResturantsArray(data)
-
         setHideRefreshBtn(false)
-
     }
-
 
     // console.log('Query refresh', query);
 
@@ -67,7 +62,6 @@ export default function Result({ props }) {
         fetchData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
 
 
     const handleRefreshBtn = () => {
@@ -105,12 +99,9 @@ export default function Result({ props }) {
         const selectedPlace = resturantsArray.filter(item => item.name === name)[0]
         // console.log(selectedPlace);
         setCurrentDisplay(selectedPlace)
-
-
     }
 
     const handleTakeMeThereBtn = () => {
-
         // redirect to google map 
 
         window.open(`https://maps.google.com?q=${currentDisplay.name}`)

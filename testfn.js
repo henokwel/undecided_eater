@@ -1,0 +1,1 @@
+export const addfnn = (a,b) => a + b
