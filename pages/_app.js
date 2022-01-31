@@ -1,7 +1,8 @@
 import '../styles/globals.css'
 import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, BaseProvider} from 'baseui';
-import { styletron } from './styletron';
+import { styletron } from '../src/lib/styletron';
+
 
 
 function MyApp({ Component, pageProps }) {
