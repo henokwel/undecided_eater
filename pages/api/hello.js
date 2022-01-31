@@ -71,10 +71,10 @@ export default function handler(req, res) {
 
 
   // One Pig Star
-  const onePigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level <= 2)
+  const onePigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level <= 1)
 
   //  Two Pig Start
-  const twoPigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level === 3)// || foodPrice.price_level >= 2
+  const twoPigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level === 2)// || foodPrice.price_level >= 2
 
 
   //  Three Pig Start

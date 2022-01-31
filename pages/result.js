@@ -71,14 +71,18 @@ export default function Result({ props }) {
     }, [])
 
 
+    console.log(resturantsArray);
+
+
     const handleRefreshBtn = () => {
         // new array with all not selected places
         const newRandom = resturantsArray.filter(place => place.name !== currentDisplay.name)
 
 
         // Limit selected to only 3, 
+        const limitTo3 = selectedResturant.length === 3 ? 3 : selectedResturant.length
 
-        if (selectedResturant.length !== 3) {
+        if (selectedResturant.length !== limitTo3) {
 
             // save current resturant name to selected state
             setSelectedResturant([...selectedResturant, currentDisplay])
