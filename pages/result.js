@@ -23,21 +23,9 @@ const THEME = {
 };
 
 
-const OnlyOnceUseEffect = (callBack) => {
-    const initLoad = useRef(false)
-
-    useEffect(() => {
-        if (initLoad.current) {
-            callBack()
-            initLoad.current = true
-            console.log('Run Once');
-
-        }
-    });
-}
 
 
-export default function Home({ props }) {
+export default function Result({ props }) {
     const [resturantsArray, setResturantsArray] = useState([]);
     const [selectedResturant, setSelectedResturant] = useState([]);
     const [currentDisplay, setCurrentDisplay] = useState(null);
@@ -79,7 +67,7 @@ export default function Home({ props }) {
         // console.log('Init Result', query);
         // Fetch Data and set Result
         fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 

@@ -85,15 +85,31 @@ export default function handler(req, res) {
 
 
   switch (price) {
+    case "":
+      console.log('run price empty ===>', price);
+
+      return res.status(200).json(JSON.stringify(onePigRestaurants))
+      break;
+
     case "0":
+      console.log('run price 0 ===>', price);
+
       return res.status(200).json(JSON.stringify(onePigRestaurants))
       break;
     case "1":
-      return res.status(200).json(JSON.stringify(onePigRestaurants))
-    case "2":
+      console.log('run price 1  ===>', price);
+
       return res.status(200).json(JSON.stringify(twoPigRestaurants))
-    default:
+    case "2":
+      console.log('run price 2 ===>', price);
+
       return res.status(200).json(JSON.stringify(threePigRestaurants))
+
+
+    default:
+      console.log('run price  default ===>', price);
+
+      return res.status(200).json(JSON.stringify(twoPigRestaurants))
       break;
   }
 
