@@ -74,7 +74,7 @@ export const Card = ({ themes, name, rating, price }) => {
                         // width={43}
                         // height={37}
                         src={
-                            price <= 2 ? Pig0 : price === 3 ? Pig1 : Pig2
+                            price <= 2 ? Pig0 : price <= 3 ? Pig1 : Pig2
                         }
                         alt="One Dollar sign" />
                 </div>
