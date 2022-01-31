@@ -12,7 +12,7 @@ import Image from 'next/image';
 const primitives = {
     accent: '#0075EB', // hot pink
     accent50: '#FDEDFC',
-    accent100: '#0075EB',
+    accent100: '#296FB5',
     accent200: '#0054A9',
     accent300: '#F45AEA',
     accent400: '#F127E4',

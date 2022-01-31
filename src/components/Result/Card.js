@@ -33,7 +33,9 @@ export const Card = ({ themes, name, rating, price }) => {
                 Root: {
                     style: {
                         maxWidth: '528px',
-                        borderRadius: themes.borders.radius100,
+                        border:"none",
+                        // borderRadius: themes.borders.radius100,
+                        background:"transparent",
 
                         marginTop: themes.sizing.scale1200,
 
@@ -43,7 +45,7 @@ export const Card = ({ themes, name, rating, price }) => {
             // Add local picture
             // `https://maps.googleapis.com/maps/api/place/photo?maxwidth=700&photoreference=${photoRef}&sensor=false&key=${process.env.MY_KEY}`
             headerImage={
-                'https://source.unsplash.com/user/brookelark/700x400'
+                'https://source.unsplash.com/user/brookelark/640x250'
             }
             title={name ?? "Loading.."}
         >

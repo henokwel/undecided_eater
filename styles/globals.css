@@ -4,7 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #0075eb;
+  background: linear-gradient(180deg, #327ECC 0%, #0C3A68 83.05%);
   font-family: "IBM Plex Sans", sans-serif;
 }
 

@@ -50,7 +50,7 @@ export const Wrapper = (props) => {
                         justifyContent: 'space-between',
 
                         alignItems: "center",
-                        height: "50%",
+                        // height: "50%",
 
                     })}>
                     <h1>

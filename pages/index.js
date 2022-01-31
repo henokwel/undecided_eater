@@ -156,7 +156,7 @@ export default function Home() {
             display: 'flex',
             flexDirection: "column",
             justifyContent: 'space-between',
-            height: "100vh",
+            // height: "100vh",
 
             // alignItems: 'center',
             // paddingRight: theme.sizing.scale600,

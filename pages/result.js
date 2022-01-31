@@ -211,7 +211,7 @@ export default function Result({ props }) {
                                     display: 'flex',
                                     justifyContent: 'space-between',
                                     alignItems: "center",
-                                    marginTop: themes.sizing.scale1600,
+                                    marginTop: themes.sizing.scale600,
                                     color: themes.colors.primaryB,
                                     width: "250px",
                                     // background:"red"
