@@ -1,36 +1,23 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { Skeleton } from "baseui/skeleton";
 import { ThemeProvider, LightTheme, DarkTheme } from 'baseui';
 import { Button, SIZE } from 'baseui/button';
 import LocationIcon from '../src/assets/icons/location--filled.svg'
 import ArrowIcon from '../src/assets/icons/ArrowIcon.svg'
 import ThumbUp from '../src/assets/icons/thumbs-up--filled 1.svg'
-
-
-import CustomTicks from '../src/components/utils/SearchAreaRange';
 import PriceToggler from '../src/components/utils/PriceToggler';
 import { useStyletron } from 'baseui';
 import { Layer } from 'baseui/layer';
 import { Wrapper } from '../src/components/utils/PromptWrapper';
 import SearchAreaRange from '../src/components/utils/SearchAreaRange';
 import { useRouter } from 'next/router';
-import { route } from 'next/dist/server/router';
-import Link from 'next/link';
-
-
-const THEME = {
-  light: 'light',
-  dark: 'dark',
-};
-
-
-
+import { THEME } from '../src/lib/theme';
 
 export default function Home() {
+
   const [theme, setTheme] = React.useState(THEME.dark);
   const [locationRequirePromt, setLocationRequirePromt] = React.useState(false);
   // const [locationStatus, setLocationStatus] = React.useState(true);
@@ -88,10 +75,8 @@ export default function Home() {
 
   // handle Price range
   const handlePriceSelect = (price) => {
-    // console.log('Price', price);
     setPriceRange(price)
   }
-
 
 
   // Handle Submit
@@ -103,10 +88,6 @@ export default function Home() {
       area: searchArea,
       price: priceRange
     }
-
-    // console.log('CoreSatet', coreState);
-
-
 
     router.push({
       pathname: "/result",
@@ -140,8 +121,6 @@ export default function Home() {
                     fontWeight: "600",
                     marginBottom: "12px",
                     minWidth: "251px",
-
-
                   }}
                   size={SIZE.large}>
                   I Understand
@@ -156,12 +135,6 @@ export default function Home() {
             display: 'flex',
             flexDirection: "column",
             justifyContent: 'space-between',
-            // height: "100vh",
-
-            // alignItems: 'center',
-            // paddingRight: theme.sizing.scale600,
-            // paddingLeft: theme.sizing.scale600,
-            // paddingBottom: theme.sizing.scale400,
             color: themes.colors.primaryB
           })}
         >
@@ -288,20 +261,6 @@ export default function Home() {
           </div>
         </main>
       </ThemeProvider>
-
-
     </div>
   )
 }
-
-
-
-// export async function getServerSideProps() {
-//   // Fetch data from external API
-//   const res = await fetch("http://localhost:3000/api/hello")
-//   const data = await res.json()
-
-//   // Pass data to the page via props
-//   return { props: { data } }
-// }
-
