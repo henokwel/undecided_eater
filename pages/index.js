@@ -57,6 +57,13 @@ export default function Home() {
   const handleLocationError = (err) => {
     console.warn(`ERROR(${err.code}): ${err.message}`);
     setLocationStatus({ error: true, long: null, lat: null })
+
+
+    router.push({
+      pathname: "/declined"
+    })
+
+
   }
 
   // Handle Location Prompt
