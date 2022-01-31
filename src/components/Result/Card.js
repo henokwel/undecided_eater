@@ -17,9 +17,9 @@ import { CardShadow } from './CardShadow';
 export const Card = ({ themes, name, rating, price }) => {
     const [css] = useStyletron();
 
-    console.log("price",price);
-    console.log("name",name);
-    
+    console.log("price", price);
+    console.log("name", name);
+
     return <div>
 
         {/* <CardShadow themes={themes} /> */}
@@ -38,8 +38,10 @@ export const Card = ({ themes, name, rating, price }) => {
                     }
                 }
             }}
+            // Add local picture
+            // `https://maps.googleapis.com/maps/api/place/photo?maxwidth=700&photoreference=${photoRef}&sensor=false&key=${process.env.MY_KEY}`
             headerImage={
-                'https://source.unsplash.com/user/erondu/700x400'
+                'https://source.unsplash.com/user/brookelark/700x400'
             }
         // title="Example card"
         >

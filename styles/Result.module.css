@@ -34,7 +34,7 @@
     background: #0054a9;
   }
 
-  .refreshIcon:hover{
+  .refreshIcon:active{
     animation: rotating 2s linear infinite;
 
   }

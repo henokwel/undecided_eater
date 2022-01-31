@@ -1,3 +1,4 @@
+import React from 'react'
 import { Client, Server } from 'styletron-engine-atomic';
 
 const getHydrateClass = () =>

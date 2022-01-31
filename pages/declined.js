@@ -1,12 +1,10 @@
 
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Result.module.css'
-import { Skeleton } from "baseui/skeleton";
+
+
 import { ThemeProvider, LightTheme, DarkTheme } from 'baseui';
 import { useStyletron } from 'baseui';
-import { useRouter } from 'next/router';
 import { Display4 } from 'baseui/typography';
 
 
@@ -19,7 +17,7 @@ const THEME = {
 
 
 
-export default function Home({ props }) {
+export default function DeclinedPage({ props }) {
     const [theme, setTheme] = React.useState(THEME.dark);
     const [css] = useStyletron()
     return (

@@ -75,15 +75,11 @@ export default function Home({ props }) {
     console.log('Query refresh', query);
 
     useEffect(() => {
-        const { area, lat, lon, price } = query
-        console.log('Area', area);
-        console.log('Lan', lat);
-        console.log('Lon', lon);
-        console.log('Price', price);
 
         // console.log('Init Result', query);
         // Fetch Data and set Result
         fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
@@ -119,7 +115,7 @@ export default function Home({ props }) {
 
     }
 
-    const handleTakeMeThereBtn = ( ) => {
+    const handleTakeMeThereBtn = () => {
 
         // redirect to google map 
 
@@ -168,6 +164,7 @@ export default function Home({ props }) {
                                 name={currentDisplay === null ? "Loading.." : currentDisplay.name}
                                 rating={currentDisplay === null ? "Loading.." : currentDisplay.rating}
                                 price={currentDisplay === null ? "Loading.." : currentDisplay.price_level}
+                                photoRef={currentDisplay === null ? "Loading.." : currentDisplay.photos[0].photo_reference}
                             />
 
                             {/* Refresh or generate a new resturant button */}
