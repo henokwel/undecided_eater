@@ -33,4 +33,18 @@
   .priceSection [aria-checked="true"] {
     background: #0054a9;
   }
+
+  .refreshIcon:hover{
+    animation: rotating 2s linear infinite;
+
+  }
   
+
+  @keyframes rotating {
+    from{
+        -webkit-transform: rotate(360deg);
+    }
+    to{
+        -webkit-transform: rotate(0deg);
+    }
+}

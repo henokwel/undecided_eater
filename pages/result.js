@@ -39,6 +39,9 @@ const OnlyOnceUseEffect = (callBack) => {
 
 export default function Home({ props }) {
     const [resturantsArray, setResturantsArray] = useState([]);
+    const [selectedResturant, setSelectedResturant] = useState([]);
+    const [currentDisplay, setCurrentDisplay] = useState(null);
+    const [hideRefreshBtn, setHideRefreshBtn] = useState(false);
 
     console.log('Props', props);
 
@@ -50,7 +53,6 @@ export default function Home({ props }) {
     const query = router.query
 
     const fetchData = async () => {
-        const { price } = query
 
         const res = await fetch("/api/hello", {
             headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -61,86 +63,16 @@ export default function Home({ props }) {
 
         console.log("Data REsult", data);
 
-        // filter Operation
-        // const allWorking = data.results.filter(place => place.business_status === "OPERATIONAL")
+        const pickRandomResturant = Math.floor(Math.random() * data.length || 10)
+        setCurrentDisplay(data[pickRandomResturant])
+        setResturantsArray(data)
 
-        // Check for operational status
-        const allWorkingRestaurants = data.filter(place => place.business_status === "OPERATIONAL")
-        // filter the highest ranking
-        const highestRatedRestaurants = allWorkingRestaurants.sort((a, b) => {
-            if (a.rating > b.rating)
-                return -1;
-            if (a.rating < b.rating)
-                return 1;
-            return 0;
-        })
-
-        // Filter out resturant without Price level
-        const restaurantsWithPriceLvL = highestRatedRestaurants.filter(place => place.hasOwnProperty("price_level"))
-
-        console.log("Before one pig", restaurantsWithPriceLvL);
-
-
-
-        // price_level ==>   0 free , 1 Inexpensive, 2 Moderate,  3 Expensive , 4 Very Expensive
-
-
-        // check if user has price range & sort in order
-
-
-
-        restaurantsWithPriceLvL.sort((a, b) => {
-            if (a.price_level > b.price_level)
-                return -1;
-            if (a.price_level < b.price_level)
-                return 1;
-            return 0;
-        })
-
-
-        // One Pig Star
-        const onePigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level <= 2)
-
-        //  Two Pig Start
-        const twoPigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level === 3)// || foodPrice.price_level >= 2
-
-
-        //  Three Pig Start
-        const threePigRestaurants = restaurantsWithPriceLvL.filter(foodPrice => foodPrice.price_level >= 3)
-        console.log("three", threePigRestaurants);
-
-
-
-
-        switch (price) {
-            case 0:
-
-                return setResturantsArray(onePigRestaurants)
-
-
-                break;
-            case 1:
-                return setResturantsArray(twoPigRestaurants)
-
-            case 2:
-                return setResturantsArray(threePigRestaurants)
-            default:
-                return setResturantsArray(onePigRestaurants)
-                break;
-        }
-
+        setHideRefreshBtn(false)
 
     }
 
 
-    // OnlyOnceUseEffect(() => {
-    //     fetchData()
-    // })
-
-
-
-
-
+    console.log('Query refresh', query);
 
     useEffect(() => {
         const { area, lat, lon, price } = query
@@ -151,16 +83,48 @@ export default function Home({ props }) {
 
         // console.log('Init Result', query);
         // Fetch Data and set Result
-
         fetchData()
-
     }, [])
 
 
+    const handleRefreshBtn = () => {
+        // new array with all not selected places
+        const newRandom = resturantsArray.filter(place => place.name !== currentDisplay.name)
 
 
+        // Limit selected to only 3, 
+
+        if (selectedResturant.length !== 3) {
+
+            // save current resturant name to selected state
+            setSelectedResturant([...selectedResturant, currentDisplay])
+
+            // pick a random and set as current
+            setCurrentDisplay(newRandom[Math.floor(Math.random() * newRandom.length)])
+        } else {
+
+            // Hide refresh button
+            // flash indecision quote
+            setHideRefreshBtn(true)
+
+        }
+
+    }
+
+    const handleToggleBtn = (name) => {
+        const selectedPlace = resturantsArray.filter(item => item.name === name)[0]
+        console.log(selectedPlace);
+        setCurrentDisplay(selectedPlace)
 
 
+    }
+
+    const handleTakeMeThereBtn = ( ) => {
+
+        // redirect to google map 
+
+        window.open(`https://maps.google.com?q=${currentDisplay.name}`)
+    }
     return (
         <div
             className={css({
@@ -169,9 +133,9 @@ export default function Home({ props }) {
                 // justifyContent:"space-between",
                 minHeight: "100vh",
                 paddingLeft: "5%",
+            })}>
 
-            })}
-        >
+
             <Head>
                 <title>Results</title>
                 <meta name="description" content="Generated by create next app" />
@@ -184,92 +148,112 @@ export default function Home({ props }) {
 
                 {/* <CardShadow  themes={themes}/> */}
 
-                <main
-                    className={css({
-                        display: 'flex',
-                        flexDirection: "column",
-                        justifyContent: 'space-between',
-                        alignItems: "center",
-                        color: themes.colors.primaryB
-                    })}>
 
-                    <Card themes={themes} />
+                {
+                    resturantsArray.length !== 0 ?
 
-                    <div
-                        className={css({
-                            display: 'flex',
-                            // flexDirection: "column",
-                            justifyContent: 'center',
-                            maxWidth: '528px',
-                            marginTop: themes.sizing.scale800,
-                            color: themes.colors.primaryB
-                        })}>
 
-                        <Button shape={SHAPE.circle}>
-                            <Image src={RefreshIcon} alt="Generate Icon" />
-                        </Button>
-                    </div>
 
-                    <div
-                        className={css({
-                            display: 'flex',
-                            justifyContent: 'center',
-                            marginTop: themes.sizing.scale1000,
-                            color: themes.colors.primaryB
-                        })}>
+                        <main
+                            className={css({
+                                display: 'flex',
+                                flexDirection: "column",
+                                justifyContent: 'space-between',
+                                alignItems: "center",
+                                color: themes.colors.primaryB
+                            })}>
 
-                        <Button
-                            size={SIZE.large}
-                            $style={{ width: "350px", textAlign: "center" }}>
-                            Take me there
-                            {'\u00A0'}
-                            {'\u00A0'}
-                            {'\u00A0'}
-                            <Image src={ArrowIcon} alt="Arrow Icon Pin" />
-                        </Button>
-                    </div>
+                            <Card
+                                themes={themes}
+                                name={currentDisplay === null ? "Loading.." : currentDisplay.name}
+                                rating={currentDisplay === null ? "Loading.." : currentDisplay.rating}
+                                price={currentDisplay === null ? "Loading.." : currentDisplay.price_level}
+                            />
 
-                    <div
-                        className={css({
-                            display: 'flex',
-                            justifyContent: 'space-evenly',
-                            alignItems: "center",
-                            marginTop: themes.sizing.scale1600,
-                            color: themes.colors.primaryB,
-                            maxWidth: "500px",
-                        })}>
+                            {/* Refresh or generate a new resturant button */}
+                            <div
+                                className={css({
+                                    display: 'flex',
+                                    // flexDirection: "column",
+                                    justifyContent: 'center',
+                                    maxWidth: '528px',
+                                    marginTop: themes.sizing.scale800,
+                                    color: themes.colors.primaryB,
+                                })}>
 
-                        <Button
-                            size={SIZE.large}
-                            $style={{ width: "70px", margin: "10px", textAlign: "center" }}
-                        >
-                            <Display4 color={themes.colors.accent700}>
-                                1
-                            </Display4>
-                        </Button>
+                                {
+                                    !hideRefreshBtn ?
+                                        <Button shape={SHAPE.circle} onClick={handleRefreshBtn}>
+                                            <Image className={styles.refreshIcon} src={RefreshIcon} alt="refresh Icon" />
+                                        </Button>
+                                        :
+                                        <></>
+                                }
 
-                        <Button
-                            size={SIZE.large}
-                            $style={{ width: "70px", margin: "10px", textAlign: "center" }}>
+                            </div>
 
-                            <Display4 color={themes.colors.accent700}>
-                                2
-                            </Display4>
-                        </Button>
+                            {/* Take me there button,  direct to maps.com/resturant adress */}
+                            <div
+                                className={css({
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    marginTop: themes.sizing.scale1000,
+                                    color: themes.colors.primaryB
+                                })}>
 
-                        <Button
+                                <Button
+                                    onClick={() => handleTakeMeThereBtn(currentDisplay.name)}
+                                    size={SIZE.large}
+                                    $style={{ width: "350px", textAlign: "center" }}>
+                                    Take me there
+                                    {'\u00A0'}{'\u00A0'} {'\u00A0'}
+                                    <Image src={ArrowIcon} alt="Arrow Icon Pin" />
+                                </Button>
+                            </div>
 
-                            size={SIZE.large}
-                            $style={{ width: "70px", margin: "10px", textAlign: "center" }}>
 
-                            <Display4 color={themes.colors.accent700}>
-                                3
-                            </Display4>
-                        </Button>
 
-                    </div>
+                            {/* Toggle between selected resturant */}
 
-                </main>
+                            <div
+                                className={css({
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: "center",
+                                    marginTop: themes.sizing.scale1600,
+                                    color: themes.colors.primaryB,
+                                    width: "250px",
+                                    // background:"red"
+                                })}>
+
+                                {
+                                    selectedResturant.map((place, index) => {
+                                        return <Button
+                                            key={index}
+                                            onClick={() => handleToggleBtn(place.name)}
+                                            className={css({
+                                                width: themes.sizing.scale1400,
+                                                // margin: themes.sizing.scale400,
+                                                textAlign: "center",
+                                                margin: themes.sizing.scale500,
+                                            })}
+                                            size={SIZE.large}
+                                            shape={SHAPE.square}
+                                        >
+                                            <Display4 color={themes.colors.accent700}>
+                                                {index + 1}
+                                            </Display4>
+                                        </Button>
+                                    })
+                                }
+
+                            </div>
+
+                        </main>
+
+                        :
+                        <CardShadow themes={themes} />
+                }
             </ThemeProvider >
 
 

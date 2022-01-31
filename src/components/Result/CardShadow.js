@@ -42,9 +42,9 @@ export const CardShadow = ({ themes }) => {
                     },
                 },
             }}
-            width="350px" height="25px" animation />
+            width="350px" height="80px" animation />
 
-        <Skeleton
+        {/* <Skeleton
             overrides={{
                 Root: {
                     style: {
@@ -67,29 +67,23 @@ export const CardShadow = ({ themes }) => {
                 Root: {
                     style: {
                         margin: "10px 0px 10px 0px",
-                        // background: themes.colors.accent,
-                        boxShadow: themes.lighting.shadow600
+                         boxShadow: themes.lighting.shadow600
                     },
                 },
             }}
             width="350px"
             height="25px"
             animation
-        />
+        /> */}
 
 
         <div
             className={css({
                 display: 'flex',
-                // flexDirection: "column",
-                justifyContent: 'center',
+                 justifyContent: 'center',
 
                 maxWidth: '528px',
-                // height: "100vh",
-
-                // alignItems: 'center',
-                // paddingRight: theme.sizing.scale600,
-                // paddingLeft: theme.sizing.scale600,
+ 
 
                 marginTop: themes.sizing.scale800,
                 color: themes.colors.primaryB
@@ -115,10 +109,10 @@ export const CardShadow = ({ themes }) => {
                     },
                 }}
             />
-
-
         </div>
-        <Skeleton
+
+
+        {/* <Skeleton
             overrides={{
                 Root: {
                     style: {
@@ -129,7 +123,7 @@ export const CardShadow = ({ themes }) => {
                     },
                 },
             }}
-            width="350px" height="56px" animation />
+            width="350px" height="56px" animation /> */}
 
 
     </div>;

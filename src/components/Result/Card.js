@@ -8,15 +8,18 @@ import {
     H6,
 } from 'baseui/typography';
 
-import Pig1 from '../../assets/icons/pigprice1.svg'
-import Pig2 from '../../assets/icons/pigprice2.svg'
-import Pig3 from '../../assets/icons/pigprice3.svg'
+import Pig0 from '../../assets/icons/pigprice1.svg'
+import Pig1 from '../../assets/icons/pigprice2.svg'
+import Pig2 from '../../assets/icons/pigprice3.svg'
 import Image from 'next/image';
 import { CardShadow } from './CardShadow';
 
-export const Card = ({ themes }) => {
+export const Card = ({ themes, name, rating, price }) => {
     const [css] = useStyletron();
 
+    console.log("price",price);
+    console.log("name",name);
+    
     return <div>
 
         {/* <CardShadow themes={themes} /> */}
@@ -46,11 +49,11 @@ export const Card = ({ themes }) => {
             <StyledBody>
 
                 <H6 margin="15px 10px 1px 0px">
-                    Name: XX
+                    Name: {name ?? "Loading.."}
                 </H6>
 
                 <H6 margin="15px 10px 1px 0px">
-                    Rating: XX
+                    Rating: {rating ?? "Loading.."}
                 </H6>
 
                 <div
@@ -68,7 +71,10 @@ export const Card = ({ themes }) => {
                         layout="fixed"
                         // width={43}
                         // height={37}
-                        src={Pig3} alt="One Dollar sign" />
+                        src={
+                            price === 0 ? Pig0 : price === 1 ? Pig1 : Pig2
+                        }
+                        alt="One Dollar sign" />
                 </div>
             </StyledBody>
             {/* <StyledAction>
