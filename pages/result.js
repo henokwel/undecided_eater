@@ -49,7 +49,7 @@ export default function Result({ props }) {
         })
         const data = await res.json()
 
-        console.log("Data REsult", data);
+        // console.log("Data REsult", data);
 
         const pickRandomResturant = Math.floor(Math.random() * data.length || 10)
         setCurrentDisplay(data[pickRandomResturant])
@@ -60,18 +60,14 @@ export default function Result({ props }) {
     }
 
 
-    console.log('Query refresh', query);
+    // console.log('Query refresh', query);
 
     useEffect(() => {
-
-        // console.log('Init Result', query);
         // Fetch Data and set Result
         fetchData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
-    console.log(resturantsArray);
 
 
     const handleRefreshBtn = () => {
@@ -79,8 +75,14 @@ export default function Result({ props }) {
         const newRandom = resturantsArray.filter(place => place.name !== currentDisplay.name)
 
 
+        console.log('NewRandom', newRandom);
+
         // Limit selected to only 3, 
-        const limitTo3 = selectedResturant.length === 3 ? 3 : selectedResturant.length
+        const checkForResturantNr = newRandom.length > 3 ? true : false
+        const limitTo3 = checkForResturantNr ? 3 : newRandom.length
+
+
+        console.log('Limit2', limitTo3);
 
         if (selectedResturant.length !== limitTo3) {
 
@@ -101,7 +103,7 @@ export default function Result({ props }) {
 
     const handleToggleBtn = (name) => {
         const selectedPlace = resturantsArray.filter(item => item.name === name)[0]
-        console.log(selectedPlace);
+        // console.log(selectedPlace);
         setCurrentDisplay(selectedPlace)
 
 
@@ -182,7 +184,7 @@ export default function Result({ props }) {
                             </div>
 
                             {/* Take me there button,  direct to maps.com/resturant adress */}
-                            <div
+                            {/* <div
                                 className={css({
                                     display: 'flex',
                                     justifyContent: 'center',
@@ -198,7 +200,7 @@ export default function Result({ props }) {
                                     {'\u00A0'}{'\u00A0'} {'\u00A0'}
                                     <Image src={ArrowIcon} alt="Arrow Icon Pin" />
                                 </Button>
-                            </div>
+                            </div> */}
 
 
 

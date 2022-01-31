@@ -11,10 +11,10 @@ export default function handler(req, res) {
   const { lat, lon, area, price } = request.query
   // console.log('hReques', request.query);
 
-  console.log(' hLat', lat);
-  console.log('hLon', lon);
-  console.log('harea', area);
-  console.log('hp', price);
+  // console.log(' hLat', lat);
+  // console.log('hLon', lon);
+  // console.log('harea', area);
+  // console.log('hp', price);
 
 
   // console.log(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat}%2C${lon}&radius=${area === "" ? 1500 : area}&type=restaurant&keyword=restaurant&k`);
@@ -86,28 +86,28 @@ export default function handler(req, res) {
 
   switch (price) {
     case "":
-      console.log('run price empty ===>', price);
+      // console.log('run price empty ===>', price);
 
       return res.status(200).json(JSON.stringify(onePigRestaurants))
       break;
 
     case "0":
-      console.log('run price 0 ===>', price);
+      // console.log('run price 0 ===>', price);
 
       return res.status(200).json(JSON.stringify(onePigRestaurants))
       break;
     case "1":
-      console.log('run price 1  ===>', price);
+      // console.log('run price 1  ===>', price);
 
       return res.status(200).json(JSON.stringify(twoPigRestaurants))
     case "2":
-      console.log('run price 2 ===>', price);
+      // console.log('run price 2 ===>', price);
 
       return res.status(200).json(JSON.stringify(threePigRestaurants))
 
 
     default:
-      console.log('run price  default ===>', price);
+      // console.log('run price  default ===>', price);
 
       return res.status(200).json(JSON.stringify(twoPigRestaurants))
       break;

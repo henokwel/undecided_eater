@@ -88,7 +88,7 @@ export default function Home() {
 
   // handle Price range
   const handlePriceSelect = (price) => {
-    console.log('Price', price);
+    // console.log('Price', price);
     setPriceRange(price)
   }
 
@@ -104,7 +104,7 @@ export default function Home() {
       price: priceRange
     }
 
-    console.log('CoreSatet', coreState);
+    // console.log('CoreSatet', coreState);
 
 
 
