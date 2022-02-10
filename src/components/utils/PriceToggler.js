@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Button } from 'baseui/button';
 import { ButtonGroup, MODE } from 'baseui/button-group';
 import { useStyletron } from 'baseui';
 import { ThemeProvider, LightTheme, DarkTheme, createTheme } from 'baseui';
 
-import Pig1 from '../../assets/icons/pigprice1.svg'
-import Pig2 from '../../assets/icons/pigprice2.svg'
-import Pig3 from '../../assets/icons/pigprice3.svg'
-import Image from 'next/image';
+// import { Button } from 'baseui/button';
+// import Pig1 from '../../assets/icons/pigprice1.svg'
+// import Pig2 from '../../assets/icons/pigprice2.svg'
+// import Pig3 from '../../assets/icons/pigprice3.svg'
+// import Image from 'next/image';
 
 const primitives = {
     accent: '#0075EB', // hot pink
@@ -35,7 +35,7 @@ const overrides = {
 const themes = createTheme(primitives, overrides);
 
 
-export default function PriceToggler({ handleSelect }) {
+export default function PriceToggler({ handleSelect, children }) {
     const [selected, setSelected] = React.useState();
     const [css, theme] = useStyletron();
 
@@ -62,7 +62,8 @@ export default function PriceToggler({ handleSelect }) {
 
                 id="buttonGroup"
             >
-                <Button>
+                {children}
+                {/* <Button>
                     <Image src={Pig1} alt="One Dollar sign" />
                 </Button>
                 <Button>
@@ -70,7 +71,7 @@ export default function PriceToggler({ handleSelect }) {
                 </Button>
                 <Button>
                     <Image src={Pig3} alt="Three Dollar sign" />
-                </Button>
+                </Button> */}
             </ButtonGroup>
         </ThemeProvider>
     );

@@ -16,6 +16,16 @@ import SearchAreaRange from '../src/components/utils/SearchAreaRange';
 import { useRouter } from 'next/router';
 import { THEME } from '../src/lib/theme';
 
+
+
+
+import Pig1 from '../src/assets/icons/pigprice1.svg'
+import Pig2 from '../src/assets/icons/pigprice2.svg'
+import Pig3 from '../src/assets/icons/pigprice3.svg'
+
+
+
+
 export default function Home() {
 
   const [theme, setTheme] = React.useState(THEME.dark);
@@ -220,7 +230,19 @@ export default function Home() {
               </h1>
 
               <div style={{ display: "flex" }}>
-                <PriceToggler handleSelect={handlePriceSelect} />
+                <PriceToggler handleSelect={handlePriceSelect} >
+
+
+                  <Button>
+                    <Image src={Pig1} alt="One Dollar sign" />
+                  </Button>
+                  <Button>
+                    <Image src={Pig2} alt="Two Dollar sign" />
+                  </Button>
+                  <Button>
+                    <Image src={Pig3} alt="Three Dollar sign" />
+                  </Button>
+                </PriceToggler>
               </div>
             </section>
 

@@ -15,6 +15,7 @@ import { Quote } from '../src/components/Result/Quote';
 import { Card } from '../src/components/Result/Card';
 import { CardShadow } from '../src/components/Result/CardShadow';
 import { ButtonGroup, MODE } from 'baseui/button-group';
+import PriceToggler from '../src/components/utils/PriceToggler';
 
 
 
@@ -212,17 +213,45 @@ export default function Result({ props }) {
                             {/* Toggle between selected resturant */}
 
                             <div
+
                                 className={css({
                                     display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: "center",
-                                    marginTop: themes.sizing.scale600,
-                                    color: themes.colors.primaryB,
-                                    width: "250px",
-                                    // background:"red"
-                                })}>
+                                    justifyContent: 'center',
 
-                                <ButtonGroup
+                                    marginTop: themes.sizing.scale600,
+                                    width: "250px",
+                                })}
+                            >
+
+
+                                <PriceToggler handleSelect={setSelected}
+                                // className={css({
+                                //     display: 'flex',
+                                //     justifyContent: 'space-between',
+                                //     alignItems: "center",
+                                //     marginTop: themes.sizing.scale600,
+                                //     // color: themes.colors.primaryB,
+                                //     width: "250px",
+                                //     background: "red"
+                                // })}
+
+                                >
+                                    {
+                                        selectedResturant.map((place, index) => {
+                                            return <Button
+                                                key={index}
+                                                onClick={() => handleToggleBtn(place.name)}
+
+                                            >
+                                                <Display4 color={themes.colors.accent100}>
+                                                    {index + 1}
+                                                </Display4>
+                                            </Button>
+                                        })
+                                    }
+                                </PriceToggler>
+
+                                {/* <ButtonGroup
                                     mode={MODE.radio}
                                     selected={selected}
                                     onClick={(event, index) => {
@@ -250,7 +279,7 @@ export default function Result({ props }) {
                                             </Button>
                                         })
                                     }
-                                </ButtonGroup>
+                                </ButtonGroup> */}
 
 
                             </div>
