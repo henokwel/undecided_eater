@@ -14,6 +14,7 @@ import { Display4 } from 'baseui/typography';
 import { Quote } from '../src/components/Result/Quote';
 import { Card } from '../src/components/Result/Card';
 import { CardShadow } from '../src/components/Result/CardShadow';
+import { ButtonGroup, MODE } from 'baseui/button-group';
 
 
 
@@ -30,7 +31,7 @@ export default function Result({ props }) {
     const [selectedResturant, setSelectedResturant] = useState([]);
     const [currentDisplay, setCurrentDisplay] = useState(null);
     const [hideRefreshBtn, setHideRefreshBtn] = useState(false);
-
+    const [selected, setSelected] = React.useState();
     console.log('Props', props);
 
     const [theme, setTheme] = React.useState(THEME.dark);
@@ -49,17 +50,23 @@ export default function Result({ props }) {
         })
         const data = await res.json()
 
-        const pickRandomResturant = Math.floor(Math.random() * data.length )
+        const pickRandomResturant = Math.floor(Math.random() * data.length)
+
         setCurrentDisplay(data[pickRandomResturant])
         setResturantsArray(data)
         setHideRefreshBtn(false)
     }
+
+
 
     // console.log('Query refresh', query);
 
     useEffect(() => {
         // Fetch Data and set Result
         fetchData()
+
+        // Check for reload and serve saved data or redirect
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -208,26 +215,36 @@ export default function Result({ props }) {
                                     // background:"red"
                                 })}>
 
-                                {
-                                    selectedResturant.map((place, index) => {
-                                        return <Button
-                                            key={index}
-                                            onClick={() => handleToggleBtn(place.name)}
-                                            className={css({
-                                                width: themes.sizing.scale1400,
-                                                // margin: themes.sizing.scale400,
-                                                textAlign: "center",
-                                                margin: themes.sizing.scale500,
-                                            })}
-                                            size={SIZE.large}
-                                            shape={SHAPE.square}
-                                        >
-                                            <Display4 color={themes.colors.accent700}>
-                                                {index + 1}
-                                            </Display4>
-                                        </Button>
-                                    })
-                                }
+                                <ButtonGroup
+                                    mode={MODE.radio}
+                                    selected={selected}
+                                    onClick={(event, index) => {
+                                        setSelected(index);
+                                    }}
+                                >
+                                    {
+                                        selectedResturant.map((place, index) => {
+                                            return <Button
+                                                key={index}
+                                                onClick={() => handleToggleBtn(place.name)}
+                                                className={css({
+                                                    width: themes.sizing.scale1400,
+                                                    // margin: themes.sizing.scale400,
+                                                    color: themes.colors.accent,
+                                                    textAlign: "center",
+                                                    margin: themes.sizing.scale500,
+                                                })}
+                                            // size={SIZE.large}
+                                            // shape={SHAPE.circle}
+                                            >
+                                                <Display4 color={themes.colors.accent700}>
+                                                    {index + 1}
+                                                </Display4>
+                                            </Button>
+                                        })
+                                    }
+                                </ButtonGroup>
+
 
                             </div>
 
