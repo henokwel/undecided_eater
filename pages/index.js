@@ -5,16 +5,17 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { ThemeProvider, LightTheme, DarkTheme } from 'baseui';
 import { Button, SIZE } from 'baseui/button';
-import LocationIcon from '../src/assets/icons/location--filled.svg'
 import ArrowIcon from '../src/assets/icons/ArrowIcon.svg'
-import ThumbUp from '../src/assets/icons/thumbs-up--filled 1.svg'
-import PriceToggler from '../src/components/utils/PriceToggler';
 import { useStyletron } from 'baseui';
-import { Layer } from 'baseui/layer';
-import { Wrapper } from '../src/components/utils/PromptWrapper';
-import SearchAreaRange from '../src/components/utils/SearchAreaRange';
 import { useRouter } from 'next/router';
 import { THEME } from '../src/lib/theme';
+import { GetLocation } from '../src/components/Home/GetLocation';
+import { GetPrice } from '../src/components/Home/GetPrice';
+import { GetSearchArea } from '../src/components/Home/GetSearchArea';
+import { GetPromptBanner } from '../src/components/Home/GetPromptBanner';
+import { Label1 } from 'baseui/typography';
+
+
 
 export default function Home() {
 
@@ -29,8 +30,6 @@ export default function Home() {
   const [searchArea, setSearchArea] = useState(null);
 
   const router = useRouter()
-
-
 
 
   // Get Location Fn()
@@ -101,34 +100,23 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Undecided Eater</title>
-        <meta name="description" content="Pick a restaurant for undecided eater" />
-        <link rel="icon" href="/favicon.ico" />
-
+        <meta name="description" content="A quick restaurant finder app." />
+        <link rel="icon" href="favicons/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
+        <link rel="manifest" href="favicons/site.webmanifest" />
+        <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
       </Head>
 
       <ThemeProvider theme={theme === THEME.light ? LightTheme : DarkTheme}>
 
-        {
-
-          locationRequirePromt ?
-
-            <Layer>
-              <Wrapper>
-                <Button
-                  onClick={() => handleLocation()}
-                  $style={{
-                    color: "#0054A9",
-                    fontWeight: "600",
-                    marginBottom: "12px",
-                    minWidth: "251px",
-                  }}
-                  size={SIZE.large}>
-                  I Understand
-                </Button>
-              </Wrapper>
-            </Layer>
-            : null
-        }
+        <GetPromptBanner
+          locationRequirePromt={locationRequirePromt}
+          handleLocation={handleLocation}
+        />
 
         <main
           className={css({
@@ -136,92 +124,23 @@ export default function Home() {
             flexDirection: "column",
             justifyContent: 'space-between',
             color: themes.colors.primaryB
-          })}
-        >
+          })}>
+
+          <GetLocation
+            locationStatus={locationStatus}
+            setLocationRequirePromt={setLocationRequirePromt}
+          />
+
+          <GetSearchArea
+            handleSelect={handleSearchArea}
+          />
+
+          <GetPrice
+            handleSelect={handlePriceSelect}
+          />
 
 
-          <div>
-            <section className={styles.locationSection}
-            >
-              <h1 style={{
-                fontSize: '32px',
-                fontWeight: '600',
-                marginBottom: '15px',
-                lineHeight: '42px',
-                // color: "white"
-              }}>
-                Your   <br />
-                Current   <br />
-                Location   <br />
-              </h1>
-
-              <div style={{ display: "flex" }}>
-
-                {
-                  locationStatus.lat === null ?
-                    <>
-                      <Button
-                        onClick={() => setLocationRequirePromt(true)}
-                        className={css({
-                          marginRight: "18px",
-                          textAlign: themes.sizing.scale400,
-                          fontWeight: "600",
-                          color: "#0054A9"
-                        })}
-
-                        size={SIZE.large}>
-                        Get Location
-                      </Button>
-                      <Image src={LocationIcon} alt="Location Pin Icon" />
-                    </>
-                    :
-                    <Image src={ThumbUp} alt="Thumb up  Icon" />
-
-                }
-
-              </div>
-            </section>
-
-            <section className={styles.searchAreaSection}>
-              <h1 style={{
-                fontSize: '32px',
-                fontWeight: '600',
-                marginBottom: '15px',
-                lineHeight: '42px',
-                // color: "white"
-              }}>
-                Search   <br />
-                Area   <br />
-              </h1>
-
-              <div style={{ display: "flex" }}>
-                <SearchAreaRange handleSelect={handleSearchArea} />
-              </div>
-            </section>
-
-
-
-            <section className={styles.priceSection}>
-              <h1 style={{
-                fontSize: '32px',
-                fontWeight: '600',
-                marginBottom: '15px',
-                lineHeight: '42px',
-                // color: "white"
-              }}>
-                Price <br />
-                Range
-              </h1>
-
-              <div style={{ display: "flex" }}>
-                <PriceToggler handleSelect={handlePriceSelect} />
-              </div>
-            </section>
-
-          </div>
-
-
-
+          {/* Search button is ONLY Visible if user allow location access */}
           <div
             style={{
               display: "flex",
@@ -240,25 +159,26 @@ export default function Home() {
                     color: "#0054A9",
                     fontWeight: "600",
                     width: "254px"
-                    // marginRight: "12px"
-
                   }}
-                  size={SIZE.large}>
-                  {/* <Link href="/result"> */}
-                  Search
-                  {/* </Link> */}
+                  size={SIZE.large}
+                >
+
+
+                  <Label1
+                    color={themes.colors.accent500}
+                    $style={{ fontWeight: 600 }}
+                  >
+                    Search
+                  </Label1>
+
                   {'\u00A0'}
                   {'\u00A0'}
                   {'\u00A0'}
                   <Image src={ArrowIcon} alt="Arrow Icon Pin" />
-
-
                 </Button>
-
-
             }
-
           </div>
+
         </main>
       </ThemeProvider>
     </div>
