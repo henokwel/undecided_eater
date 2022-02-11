@@ -101,6 +101,11 @@ export default function Home() {
       <Head>
         <title>Undecided Eater</title>
         <meta name="description" content="A quick restaurant finder app." />
+        <meta property="og:title" content="Undecided Eater" />
+        <meta property="og:site_name" content="undecidedeater" />
+        <meta property="og:url" content="https://www.undecidedeater.com/" />
+        <meta property="og:description" content="A quick restaurant finder for undecided eater." />
+        <meta property="og:type" content="website" />
         <link rel="icon" href="favicons/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png" />
