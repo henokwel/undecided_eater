@@ -1,5 +1,6 @@
 {
-  "name": "undecidedeater",
+  "name": "undecided eater",
+  "description": "A quick restaurant finder for undecided eater.",
   "private": true,
   "scripts": {
     "dev": "next dev",
