@@ -24,7 +24,7 @@ export const GetLocation = ({ locationStatus, setLocationRequirePromt, theme }) 
             }}>
                 Your   <br />
                 Current   <br />
-                Location  dsfdsf  <br />
+                Location    <br />
             </h1>
 
             <div style={{ display: "flex" }}>
