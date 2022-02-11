@@ -62,7 +62,7 @@ export default function Result({ props }) {
         // new array with all not selected places
         const newRandom = resturantsArray.filter(place => place.name !== currentDisplay.name)
 
-        console.log('NewRandom', newRandom);
+        // console.log('NewRandom', newRandom);
 
         // Limit selected to only 3, 
         const checkForResturantNr = newRandom.length > 3 ? true : false

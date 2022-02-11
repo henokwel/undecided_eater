@@ -88,7 +88,7 @@ export default function handler(req, res) {
 
 
     .catch((error) => {
-      console.error('Error:', error);
+      console.error('Error:', "Data related");
     });
 
 }
