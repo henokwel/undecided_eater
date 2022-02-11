@@ -3,10 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Result.module.css'
-import { Skeleton } from "baseui/skeleton";
 import { ThemeProvider, LightTheme, DarkTheme } from 'baseui';
-import { Button, SIZE, SHAPE } from 'baseui/button';
-import ArrowIcon from '../src/assets/icons/ArrowIcon.svg'
+import { Button, SHAPE } from 'baseui/button';
 import RefreshIcon from '../src/assets/icons/reload-icon.svg'
 import { useStyletron } from 'baseui';
 import { useRouter } from 'next/router';
@@ -14,16 +12,8 @@ import { Display4 } from 'baseui/typography';
 import { Quote } from '../src/components/Result/Quote';
 import { Card } from '../src/components/Result/Card';
 import { CardShadow } from '../src/components/Result/CardShadow';
-import { ButtonGroup, MODE } from 'baseui/button-group';
 import PriceToggler from '../src/components/utils/PriceToggler';
-
-
-
-const THEME = {
-    light: 'light',
-    dark: 'dark',
-};
-
+import { THEME } from '../src/lib/theme';
 
 
 
@@ -33,7 +23,6 @@ export default function Result({ props }) {
     const [currentDisplay, setCurrentDisplay] = useState(null);
     const [hideRefreshBtn, setHideRefreshBtn] = useState(false);
     const [selected, setSelected] = React.useState();
-    console.log('Props', props);
 
     const [theme, setTheme] = React.useState(THEME.dark);
     const [css, themes] = useStyletron();
@@ -59,9 +48,6 @@ export default function Result({ props }) {
     }
 
 
-
-    // console.log('Query refresh', query);
-
     useEffect(() => {
         // Fetch Data and set Result
         fetchData()
@@ -76,15 +62,11 @@ export default function Result({ props }) {
         // new array with all not selected places
         const newRandom = resturantsArray.filter(place => place.name !== currentDisplay.name)
 
-
         console.log('NewRandom', newRandom);
 
         // Limit selected to only 3, 
         const checkForResturantNr = newRandom.length > 3 ? true : false
         const limitTo3 = checkForResturantNr ? 3 : newRandom.length
-
-
-        console.log('Limit2', limitTo3);
 
         if (selectedResturant.length !== limitTo3) {
 
@@ -98,9 +80,7 @@ export default function Result({ props }) {
             // Hide refresh button
             // flash indecision quote
             setHideRefreshBtn(true)
-
         }
-
     }
 
     const handleToggleBtn = (name) => {
@@ -109,11 +89,6 @@ export default function Result({ props }) {
         setCurrentDisplay(selectedPlace)
     }
 
-    const handleTakeMeThereBtn = () => {
-        // redirect to google map 
-
-        window.open(`https://maps.google.com?q=${currentDisplay.name}`)
-    }
     return (
         <div
             className={css({
@@ -123,7 +98,6 @@ export default function Result({ props }) {
                 minHeight: "100vh",
                 paddingLeft: "5%",
             })}>
-
 
             <Head>
                 <title>Pick One</title>
@@ -144,11 +118,8 @@ export default function Result({ props }) {
 
                 {/* <CardShadow  themes={themes}/> */}
 
-
                 {
                     resturantsArray.length !== 0 ?
-
-
 
                         <main
                             className={css({
@@ -186,56 +157,22 @@ export default function Result({ props }) {
                                         :
                                         <></>
                                 }
-
                             </div>
-
-                            {/* Take me there button,  direct to maps.com/resturant adress */}
-                            {/* <div
-                                className={css({
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    marginTop: themes.sizing.scale1000,
-                                    color: themes.colors.primaryB
-                                })}>
-
-                                <Button
-                                    onClick={() => handleTakeMeThereBtn(currentDisplay.name)}
-                                    size={SIZE.large}
-                                    $style={{ width: "350px", textAlign: "center" }}>
-                                    Take me there
-                                    {'\u00A0'}{'\u00A0'} {'\u00A0'}
-                                    <Image src={ArrowIcon} alt="Arrow Icon Pin" />
-                                </Button>
-                            </div> */}
-
-
 
                             {/* Toggle between selected resturant */}
 
                             <div
-
                                 className={css({
                                     display: 'flex',
                                     justifyContent: 'center',
-
                                     marginTop: themes.sizing.scale600,
                                     width: "250px",
                                 })}
                             >
 
 
-                                <PriceToggler handleSelect={setSelected}
-                                // className={css({
-                                //     display: 'flex',
-                                //     justifyContent: 'space-between',
-                                //     alignItems: "center",
-                                //     marginTop: themes.sizing.scale600,
-                                //     // color: themes.colors.primaryB,
-                                //     width: "250px",
-                                //     background: "red"
-                                // })}
+                                <PriceToggler handleSelect={setSelected}>
 
-                                >
                                     {
                                         selectedResturant.map((place, index) => {
                                             return <Button
@@ -249,49 +186,17 @@ export default function Result({ props }) {
                                             </Button>
                                         })
                                     }
+
                                 </PriceToggler>
-
-                                {/* <ButtonGroup
-                                    mode={MODE.radio}
-                                    selected={selected}
-                                    onClick={(event, index) => {
-                                        setSelected(index);
-                                    }}
-                                >
-                                    {
-                                        selectedResturant.map((place, index) => {
-                                            return <Button
-                                                key={index}
-                                                onClick={() => handleToggleBtn(place.name)}
-                                                className={css({
-                                                    width: themes.sizing.scale1400,
-                                                    // margin: themes.sizing.scale400,
-                                                    color: themes.colors.accent,
-                                                    textAlign: "center",
-                                                    margin: themes.sizing.scale500,
-                                                })}
-                                            // size={SIZE.large}
-                                            // shape={SHAPE.circle}
-                                            >
-                                                <Display4 color={themes.colors.accent700}>
-                                                    {index + 1}
-                                                </Display4>
-                                            </Button>
-                                        })
-                                    }
-                                </ButtonGroup> */}
-
 
                             </div>
 
                         </main>
-
                         :
                         <CardShadow themes={themes} />
                 }
+
             </ThemeProvider >
-
-
         </div >
     )
 }

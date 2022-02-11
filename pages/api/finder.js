@@ -19,8 +19,7 @@ export default function handler(req, res) {
       // send message as res.send("Denied")
 
       const newData = data.results
-      console.log(data);
-
+ 
       // Check for operational status
       const allWorkingRestaurants = newData.filter(place => place.business_status === "OPERATIONAL")
       // filter the highest ranking

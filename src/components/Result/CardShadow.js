@@ -16,7 +16,6 @@ export const CardShadow = ({ themes }) => {
         })}
     >
 
-
         <Skeleton
             overrides={{
                 Root: {
@@ -28,71 +27,29 @@ export const CardShadow = ({ themes }) => {
                     },
                 },
             }}
-
-            width="528px" height="463px" animation />
+            width="528px" height="463px" animation
+        />
 
         <Skeleton
             overrides={{
                 Root: {
                     style: {
                         margin: "10px 0px 10px 0px",
-                        // background: themes.colors.accent,
                         boxShadow: themes.lighting.shadow600
-
                     },
                 },
             }}
             width="350px" height="80px" animation />
 
-        {/* <Skeleton
-            overrides={{
-                Root: {
-                    style: {
-                        margin: "10px 0px 10px 0px",
-                        // background: themes.colors.accent,
-                        boxShadow: themes.lighting.shadow600
-
-                    },
-                },
-            }}
-            width="350px"
-            height="25px"
-            animation
-        />
-
-
-
-        <Skeleton
-            overrides={{
-                Root: {
-                    style: {
-                        margin: "10px 0px 10px 0px",
-                         boxShadow: themes.lighting.shadow600
-                    },
-                },
-            }}
-            width="350px"
-            height="25px"
-            animation
-        /> */}
-
-
         <div
             className={css({
                 display: 'flex',
-                 justifyContent: 'center',
-
+                justifyContent: 'center',
                 maxWidth: '528px',
- 
-
                 marginTop: themes.sizing.scale800,
                 color: themes.colors.primaryB
             })}
-
         >
-
-
-
 
             <Skeleton
                 width="100px"
@@ -110,21 +67,5 @@ export const CardShadow = ({ themes }) => {
                 }}
             />
         </div>
-
-
-        {/* <Skeleton
-            overrides={{
-                Root: {
-                    style: {
-                        // margin: "10px 0px 10px 0px",
-                        // background: themes.colors.accent,
-                        boxShadow: themes.lighting.shadow600
-
-                    },
-                },
-            }}
-            width="350px" height="56px" animation /> */}
-
-
     </div>;
 };
