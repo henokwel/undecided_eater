@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { Button, SIZE } from 'baseui/button'
 import { Label1 } from 'baseui/typography'
 import styles from '../../../styles/Home.module.css'
+
 import LocationIcon from '../../assets/icons/location--filled.svg'
 import ThumbUp from '../../assets/icons/thumbs-up--filled 1.svg'
 import { useStyletron } from 'baseui'

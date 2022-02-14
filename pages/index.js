@@ -96,12 +96,14 @@ export default function Home() {
   }
 
 
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Undecided Eater</title>
-        
-        <meta name="description" content="A quick restaurant finder app." />
+        <meta name='title' />
+        <meta name="description" content="Undecidedeater helps you find the best restaurant of your choice based on location and price range." />
+
         <meta property="og:title" content="Undecided Eater- Free nearby restaurant searching tool based on your  location and price range" />
         <meta property="og:description" content="Undecidedeater helps you find the best restaurant of your choice based on location and price range." />
         {/* <meta property="og:title" content="Undecided Eater" />
